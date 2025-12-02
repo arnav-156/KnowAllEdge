@@ -1,0 +1,37 @@
+﻿# =============================================================================
+# Kubernetes Persistent Volume Claims
+# Provides persistent storage for uploads and Redis data
+# =============================================================================
+
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: KNOWALLEDGE-uploads-pvc
+  namespace: default
+  labels:
+    app: KNOWALLEDGE
+    component: storage
+spec:
+  accessModes:
+  - ReadWriteMany  # Shared across all pods
+  resources:
+    requests:
+      storage: 10Gi
+  storageClassName: standard  # Use your cluster's storage class
+
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: redis-pvc
+  namespace: default
+  labels:
+    app: KNOWALLEDGE
+    component: redis
+spec:
+  accessModes:
+  - ReadWriteOnce
+  resources:
+    requests:
+      storage: 5Gi
+  storageClassName: standard

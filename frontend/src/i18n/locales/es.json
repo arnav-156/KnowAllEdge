@@ -1,0 +1,430 @@
+﻿{
+  "common": {
+    "appName": "KNOWALLEDGE",
+    "loading": "Cargando...",
+    "error": "Error",
+    "success": "Éxito",
+    "warning": "Advertencia",
+    "info": "Información",
+    "close": "Cerrar",
+    "cancel": "Cancelar",
+    "confirm": "Confirmar",
+    "save": "Guardar",
+    "delete": "Eliminar",
+    "edit": "Editar",
+    "yes": "Sí",
+    "no": "No",
+    "ok": "Aceptar",
+    "back": "Atrás",
+    "next": "Siguiente",
+    "continue": "Continuar",
+    "skip": "Omitir",
+    "retry": "Reintentar",
+    "or": "O"
+  },
+  "navigation": {
+    "skipToMain": "Saltar al contenido principal",
+    "home": "Inicio",
+    "metrics": "Métricas",
+    "privacy": "Privacidad",
+    "settings": "Configuración",
+    "login": "Iniciar sesión / Registrarse",
+    "logout": "Cerrar sesión",
+    "profile": "Perfil",
+    "dashboard": "Panel de control"
+  },
+  "homepage": {
+    "welcome": "Bienvenido a",
+    "tagline": "Su paisaje intuitivo para aprender.",
+    "question": "¿Sobre qué desea aprender hoy?",
+    "tooltipsOn": "💡 Sugerencias activadas",
+    "showHints": "💡 Mostrar sugerencias",
+    "tooltipsEnabled": "Sugerencias activadas: ¡pase el cursor sobre los elementos para obtener ayuda!",
+    "tooltipsHidden": "Sugerencias ocultas",
+    "toggleTooltips": "Alternar sugerencias útiles para usuarios nuevos",
+    "showTooltips": "Mostrar sugerencias útiles",
+    "hideTooltips": "Ocultar sugerencias útiles",
+    "recentTopics": {
+      "title": "📚 Seleccionar de Temas Recientes",
+      "placeholder": "-- Seleccione un Tema Reciente --",
+      "description": "{{count}} tema reciente",
+      "description_plural": "{{count}} temas recientes",
+      "saved": "guardado",
+      "loaded": "Tema cargado: {{topic}}"
+    },
+    "topicInput": {
+      "label": "✏️ Ingrese Su Tema",
+      "placeholder": "Ingrese un tema (p. ej., Aprendizaje Automático, Física Cuántica)",
+      "ariaLabel": "Ingrese un tema sobre el que desea aprender",
+      "helpText": "Escriba un tema sobre el que desea aprender",
+      "charCount": "{{current}}/{{max}} caracteres",
+      "required": "El tema es obligatorio",
+      "tooShort": "El tema debe tener al menos 3 caracteres",
+      "tooLong": "El tema no puede exceder los 200 caracteres"
+    },
+    "imageUpload": {
+      "title": "Seleccionar una imagen",
+      "label": "Subir una imagen para extraer el tema",
+      "description": "Formatos compatibles: PNG, JPG, GIF, WebP (máx. 10MB)",
+      "processing": "Procesando imagen...",
+      "progress": "{{percent}}% • Procesando imagen...",
+      "remove": "Eliminar imagen subida",
+      "error": {
+        "invalidType": "Por favor, suba un archivo de imagen válido (PNG, JPG, GIF o WebP)",
+        "tooLarge": "El archivo de imagen es demasiado grande. El tamaño máximo es de {{max}}MB",
+        "uploadFailed": "No se pudo subir la imagen. Por favor, inténtelo de nuevo."
+      }
+    },
+    "preferences": {
+      "remember": "Recordar mis temas recientes",
+      "ariaLabel": "Recordar mis preferencias para futuras sesiones"
+    },
+    "generate": {
+      "button": "Generar subtemas",
+      "generating": "Generando...",
+      "ariaLabel": "Generar subtemas a partir de su entrada",
+      "ariaBusy": "Generando subtemas, por favor espere",
+      "success": "Generando subtemas...",
+      "error": "No se pudieron generar los subtemas. Por favor, inténtelo de nuevo."
+    },
+    "about": {
+      "whatIs": "¿Qué es KNOWALLEDGE?",
+      "description": "Somos una plataforma interactiva diseñada para personalizar el contenido de aprendizaje según sus necesidades. Con KNOWALLEDGE, puede explorar el aprendizaje en un paisaje conceptualmente conectado. Al proporcionar un tema y marcar algunas casillas, podremos generar un mapa mental personalizado solo para usted.",
+      "cta": "Entonces, ¿qué está esperando?",
+      "why": "¿Por qué creamos KNOWALLEDGE?",
+      "reason": "Como estudiantes, constantemente nos encontrábamos buscando en internet los recursos adecuados para resolver nuestra confusión y estrés. Cada vez, encontrábamos explicaciones que solo nos hacían buscar más respuestas. Se hizo evidente el valor de tener un proceso intuitivo y confiable para encontrar respuestas fructíferas para nuestras necesidades personales. Ahí es donde entra KNOWALLEDGE, proporcionando el cierre perfecto a nuestra búsqueda de conocimiento."
+    },
+    "metricsLink": "📊 Panel de Métricas",
+    "validationErrors": {
+      "error": "⚠️ {{message}}",
+      "required": "Por favor, ingrese un tema o suba una imagen",
+      "processing": "Por favor, espere a que la operación actual se complete"
+    },
+    "welcomeMessages": {
+      "firstTime": "👋 ¡Bienvenido! Pase el cursor sobre los elementos para obtener sugerencias útiles.",
+      "returnVisitor": "¡Bienvenido de nuevo!"
+    }
+  },
+  "graphPage": {
+    "title": "Mapa conceptual: {{topic}}",
+    "loading": "Generando su mapa conceptual...",
+    "error": "No se pudo cargar el mapa conceptual",
+    "filters": {
+      "title": "🎯 Filtrar nodos",
+      "showConcepts": "Mostrar conceptos",
+      "showExamples": "Mostrar ejemplos",
+      "showQuestions": "Mostrar preguntas",
+      "concept": "Concepto",
+      "example": "Ejemplo",
+      "question": "Pregunta"
+    },
+    "difficulty": {
+      "easy": "Fácil",
+      "medium": "Medio",
+      "hard": "Difícil"
+    },
+    "search": {
+      "placeholder": "Buscar nodos...",
+      "ariaLabel": "Buscar nodos específicos en el gráfico",
+      "results": "{{count}} resultado encontrado",
+      "results_plural": "{{count}} resultados encontrados",
+      "noResults": "No se encontraron nodos que coincidan con '{{query}}'"
+    },
+    "keyboard": {
+      "navigation": "Navegación con teclado",
+      "shortcuts": "Atajos de teclado",
+      "help": "Presione H para ver los atajos de teclado",
+      "arrowKeys": "↑↓←→ o Tab/Shift+Tab - Navegar entre nodos",
+      "enter": "Enter o Espacio - Abrir detalles del nodo seleccionado",
+      "escape": "Escape - Cerrar modal / Borrar selección",
+      "search": "Ctrl+F - Enfocar búsqueda",
+      "export": "Ctrl+E - Exportar gráfico",
+      "numbers": "1-3 - Alternar filtros de tipo de nodo",
+      "helpKey": "H - Mostrar esta ayuda",
+      "selectedNode": "Seleccionado: {{node}}, nodo de tipo {{type}}",
+      "focusAnnouncement": "Nodo enfocado. Presione Enter para ver los detalles."
+    },
+    "nodeModal": {
+      "close": "Cerrar detalles del nodo",
+      "difficulty": "Dificultad: {{level}}",
+      "type": "Tipo: {{type}}",
+      "relatedNodes": "Nodos relacionados",
+      "explanation": "Explicación",
+      "examples": "Ejemplos",
+      "resources": "Recursos adicionales"
+    },
+    "export": {
+      "button": "📥 Exportar",
+      "ariaLabel": "Exportar mapa conceptual como imagen o PDF",
+      "formats": {
+        "png": "Exportar como PNG",
+        "svg": "Exportar como SVG",
+        "pdf": "Exportar como PDF",
+        "json": "Exportar como JSON"
+      },
+      "success": "¡Gráfico exportado con éxito!",
+      "error": "No se pudo exportar el gráfico. Por favor, intente de nuevo.",
+      "filename": "KNOWALLEDGE-{{topic}}-{{date}}"
+    },
+    "zoom": {
+      "in": "Acercar",
+      "out": "Alejar",
+      "reset": "Restablecer zoom",
+      "fit": "Ajustar a la pantalla"
+    },
+    "layout": {
+      "title": "Opciones de diseño",
+      "dagre": "Jerárquico",
+      "force": "Dirigido por fuerza",
+      "circular": "Circular",
+      "grid": "Cuadrícula"
+    },
+    "stats": {
+      "nodes": "{{count}} nodo",
+      "nodes_plural": "{{count}} nodos",
+      "connections": "{{count}} conexión",
+      "connections_plural": "{{count}} conexiones"
+    }
+  },
+  "subtopicPage": {
+    "title": "Seleccionar Subtemas",
+    "description": "Seleccione los subtemas que desea explorar en su mapa conceptual",
+    "selectAll": "Seleccionar todo",
+    "deselectAll": "Deseleccionar todo",
+    "selected": "{{count}} seleccionados",
+    "generate": "Generar Mapa Conceptual",
+    "generating": "Generando su mapa...",
+    "minRequired": "Por favor, seleccione al menos {{min}} subtemas",
+    "maxAllowed": "Puede seleccionar hasta {{max}} subtemas",
+    "back": "← Volver a la Selección de Temas",
+    "subtopic": "Subtema"
+  },
+  "auth": {
+    "login": {
+      "title": "Iniciar sesión en su cuenta",
+      "email": "Correo electrónico",
+      "password": "Contraseña",
+      "rememberMe": "Recordarme",
+      "forgotPassword": "¿Olvidó su contraseña?",
+      "submit": "Iniciar sesión",
+      "noAccount": "¿No tiene una cuenta?",
+      "signUp": "Registrarse",
+      "success": "¡Inicio de sesión exitoso! Bienvenido de nuevo.",
+      "error": "Correo electrónico o contraseña incorrectos"
+    },
+    "register": {
+      "title": "Crear su cuenta",
+      "username": "Nombre de usuario",
+      "email": "Correo electrónico",
+      "password": "Contraseña",
+      "confirmPassword": "Confirmar contraseña",
+      "terms": "Acepto los Términos de Servicio y la Política de Privacidad",
+      "submit": "Crear cuenta",
+      "hasAccount": "¿Ya tiene una cuenta?",
+      "signIn": "Iniciar sesión",
+      "success": "¡Cuenta creada exitosamente! Bienvenido a KNOWALLEDGE.",
+      "error": {
+        "passwordMismatch": "Las contraseñas no coinciden",
+        "weakPassword": "La contraseña debe tener al menos 8 caracteres",
+        "emailExists": "El correo electrónico ya está en uso",
+        "usernameExists": "El nombre de usuario ya está en uso",
+        "termsRequired": "Debe aceptar los términos"
+      }
+    },
+    "profile": {
+      "userMenu": "Menú de usuario",
+      "tier": "Nivel: {{tier}}",
+      "admin": "🛡️ ADMINISTRADOR",
+      "quotaLimits": "📊 Sus límites de cuota",
+      "requestsPerMinute": "Solicitudes/Min",
+      "requestsPerDay": "Solicitudes/Día",
+      "unlimited": "Ilimitado"
+    }
+  },
+  "settings": {
+    "title": "Configuración",
+    "language": {
+      "title": "🌐 Idioma",
+      "current": "Idioma actual",
+      "select": "Seleccionar idioma",
+      "changed": "Idioma cambiado a {{language}}"
+    },
+    "theme": {
+      "title": "🎨 Tema",
+      "light": "Claro",
+      "dark": "Oscuro",
+      "auto": "Automático (Sistema)"
+    },
+    "accessibility": {
+      "title": "♿ Accesibilidad",
+      "reducedMotion": "Reducir movimiento",
+      "highContrast": "Modo de alto contraste",
+      "fontSize": "Tamaño de fuente",
+      "screenReader": "Optimización para lectores de pantalla"
+    },
+    "privacy": {
+      "title": "🔒 Privacidad",
+      "cookies": "Preferencias de cookies",
+      "analytics": "Permitir análisis",
+      "dataExport": "Exportar mis datos",
+      "deleteAccount": "Eliminar cuenta"
+    },
+    "saved": "Configuración guardada correctamente",
+    "error": "Error al guardar la configuración"
+  },
+  "privacy": {
+    "title": "Política de Privacidad",
+    "lastUpdated": "Última actualización: {{date}}",
+    "sections": {
+      "dataCollection": "Recopilación de Datos",
+      "dataUsage": "Cómo Usamos Sus Datos",
+      "dataSecurity": "Seguridad de los Datos",
+      "yourRights": "Sus Derechos",
+      "cookies": "Política de Cookies",
+      "contact": "Contáctenos"
+    }
+  },
+  "cookies": {
+    "banner": {
+      "title": "🍪 Valoramos su privacidad",
+      "description": "Utilizamos cookies y tecnologías similares para mejorar su experiencia, analizar el uso del sitio y personalizar el contenido. Al hacer clic en 'Aceptar todo', usted consiente nuestro uso de cookies.",
+      "acceptAll": "Aceptar todo",
+      "rejectAll": "Rechazar todo",
+      "customize": "Personalizar preferencias",
+      "learnMore": "Más información"
+    },
+    "categories": {
+      "necessary": {
+        "title": "Necesarias",
+        "description": "Esenciales para que el sitio web funcione correctamente. No se pueden desactivar."
+      },
+      "functional": {
+        "title": "Funcionales",
+        "description": "Permiten una funcionalidad mejorada, como recordar sus preferencias."
+      },
+      "analytics": {
+        "title": "Analíticas",
+        "description": "Nos ayudan a entender cómo interactúan los visitantes con nuestro sitio web."
+      },
+      "performance": {
+        "title": "Rendimiento",
+        "description": "Nos permiten optimizar el rendimiento y la experiencia del usuario."
+      }
+    },
+    "savePreferences": "Guardar preferencias",
+    "saved": "✅ Consentimiento de privacidad guardado"
+  },
+  "metrics": {
+    "title": "Panel de Métricas",
+    "overview": "Resumen",
+    "requests": {
+      "total": "Solicitudes Totales",
+      "today": "Solicitudes Hoy",
+      "perMinute": "Solicitudes/Minuto",
+      "perHour": "Solicitudes/Hora"
+    },
+    "users": {
+      "total": "Usuarios Totales",
+      "active": "Usuarios Activos",
+      "new": "Usuarios Nuevos (24h)"
+    },
+    "performance": {
+      "avgResponseTime": "Tiempo Promedio de Respuesta",
+      "uptime": "Tiempo de Actividad",
+      "errorRate": "Tasa de Errores"
+    },
+    "refresh": "Actualizar Datos",
+    "export": "Exportar Informe",
+    "adminOnly": "Se requiere acceso de administrador"
+  },
+  "errors": {
+    "boundary": {
+      "title": "¡Uy! Algo salió mal",
+      "description": "Encontramos un error inesperado. No se preocupe, nuestro equipo ya ha sido notificado.",
+      "action": "Volver a la página de inicio",
+      "details": "Detalles del error",
+      "report": "Reportar este problema"
+    },
+    "404": {
+      "title": "Página no encontrada",
+      "description": "La página que busca no existe.",
+      "action": "Ir a la página de inicio"
+    },
+    "500": {
+      "title": "Error del servidor",
+      "description": "Nuestros servidores encontraron un error. Por favor, intente de nuevo más tarde.",
+      "action": "Intentar de nuevo"
+    },
+    "network": {
+      "title": "Error de red",
+      "description": "No se pudo conectar al servidor. Por favor, revise su conexión a internet.",
+      "action": "Reintentar conexión"
+    },
+    "timeout": {
+      "title": "Tiempo de espera de la solicitud agotado",
+      "description": "La solicitud tardó demasiado en completarse. Por favor, intente de nuevo.",
+      "action": "Reintentar"
+    }
+  },
+  "loading": {
+    "default": "Cargando...",
+    "graph": "Generando su mapa conceptual...",
+    "subtopics": "Buscando subtemas...",
+    "authenticating": "Autenticando...",
+    "saving": "Guardando...",
+    "exporting": "Exportando...",
+    "processing": "Procesando...",
+    "uploading": "Subiendo...",
+    "analyzing": "Analizando...",
+    "please-wait": "Por favor, espere..."
+  },
+  "notifications": {
+    "welcome": "👋 ¡Bienvenido! Pase el cursor sobre los elementos para obtener consejos útiles.",
+    "saved": "✅ Guardado correctamente",
+    "deleted": "🗑️ Eliminado correctamente",
+    "copied": "📋 Copiado al portapapeles",
+    "error": "❌ {{message}}",
+    "success": "✅ {{message}}",
+    "warning": "⚠️ {{message}}",
+    "info": "ℹ️ {{message}}"
+  },
+  "accessibility": {
+    "screenReaderOnly": "Contenido solo para lectores de pantalla",
+    "skipLink": "Saltar al contenido principal",
+    "openMenu": "Abrir menú",
+    "closeMenu": "Cerrar menú",
+    "toggleNavigation": "Alternar navegación",
+    "currentPage": "Página actual",
+    "loading": "Cargando contenido",
+    "closeDialog": "Cerrar diálogo",
+    "closeNotification": "Cerrar notificación",
+    "previousPage": "Página anterior",
+    "nextPage": "Página siguiente",
+    "pageOf": "Página {{current}} de {{total}}",
+    "sortBy": "Ordenar por {{field}}",
+    "filterBy": "Filtrar por {{field}}",
+    "searchResults": "Resultados de búsqueda para {{query}}"
+  },
+  "dates": {
+    "today": "Hoy",
+    "yesterday": "Ayer",
+    "tomorrow": "Mañana",
+    "daysAgo": "Hace {{count}} día",
+    "daysAgo_plural": "Hace {{count}} días",
+    "hoursAgo": "Hace {{count}} hora",
+    "hoursAgo_plural": "Hace {{count}} horas",
+    "minutesAgo": "Hace {{count}} minuto",
+    "minutesAgo_plural": "Hace {{count}} minutos",
+    "justNow": "Hace un momento"
+  },
+  "validation": {
+    "required": "Este campo es obligatorio",
+    "email": "Por favor, ingrese una dirección de correo electrónico válida",
+    "minLength": "Debe tener al menos {{min}} caracteres",
+    "maxLength": "No puede exceder los {{max}} caracteres",
+    "number": "Debe ser un número válido",
+    "url": "Por favor, ingrese una URL válida",
+    "phone": "Por favor, ingrese un número de teléfono válido",
+    "pattern": "El formato es inválido"
+  }
+}

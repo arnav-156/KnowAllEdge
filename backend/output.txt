@@ -1,0 +1,107 @@
+﻿python : Traceback (most 
+recent call last):
+At line:1 char:1
++ python main.py > 
+output.txt 2>&1
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~
+    + CategoryInfo          
+    : NotSpecified: (Trace  
+  back (most recent call    
+ last)::String) [], Remo    
+teException
+    + FullyQualifiedErrorId 
+    : NativeCommandError
+ 
+  File "C:\Users\arnav\OneDr
+ive\Desktop\KNOWALLEDGE-main
+\KNOWALLEDGE-main\backend\co
+nfig.py", line 538, in 
+load_rotation_state
+    print(f"\u2705 Loaded 
+rotation state for 
+{len(self.tracked_secrets)} 
+secrets")
+    ~~~~~^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\arnav\AppDa
+ta\Local\Programs\Python\Pyt
+hon313\Lib\encodings\cp1252.
+py", line 19, in encode
+    return codecs.charmap_en
+code(input,self.errors,encod
+ing_table)[0]
+           ~~~~~~~~~~~~~~~~~
+~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^
+UnicodeEncodeError: 
+'charmap' codec can't 
+encode character '\u2705' 
+in position 0: character 
+maps to <undefined>
+
+During handling of the 
+above exception, another 
+exception occurred:
+
+Traceback (most recent call 
+last):
+  File "C:\Users\arnav\OneDr
+ive\Desktop\KNOWALLEDGE-main
+\KNOWALLEDGE-main\backend\ma
+in.py", line 35, in <module>
+    from config import 
+get_config
+  File "C:\Users\arnav\OneDr
+ive\Desktop\KNOWALLEDGE-main
+\KNOWALLEDGE-main\backend\co
+nfig.py", line 1472, in 
+<module>
+    config = Config()
+  File "C:\Users\arnav\OneDr
+ive\Desktop\KNOWALLEDGE-main
+\KNOWALLEDGE-main\backend\co
+nfig.py", line 862, in 
+__init__
+    self.secret_rotation = 
+SecretRotationConfig()  # 
+\u2705 NEW: Secret rotation
+                           
+~~~~~~~~~~~~~~~~~~~~^^
+  File "<string>", line 14, 
+in __init__
+  File "C:\Users\arnav\OneDr
+ive\Desktop\KNOWALLEDGE-main
+\KNOWALLEDGE-main\backend\co
+nfig.py", line 530, in 
+__post_init__
+    
+self.load_rotation_state()
+    
+~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\arnav\OneDr
+ive\Desktop\KNOWALLEDGE-main
+\KNOWALLEDGE-main\backend\co
+nfig.py", line 540, in 
+load_rotation_state
+    print(f"\u26a0\ufe0f 
+Failed to load rotation 
+state: {e}")
+    ~~~~~^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\arnav\AppDa
+ta\Local\Programs\Python\Pyt
+hon313\Lib\encodings\cp1252.
+py", line 19, in encode
+    return codecs.charmap_en
+code(input,self.errors,encod
+ing_table)[0]
+           ~~~~~~~~~~~~~~~~~
+~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^
+UnicodeEncodeError: 
+'charmap' codec can't 
+encode characters in 
+position 0-1: character 
+maps to <undefined>

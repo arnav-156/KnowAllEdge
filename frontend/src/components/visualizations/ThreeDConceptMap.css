@@ -1,0 +1,277 @@
+.threed-concept-map {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+.map-header {
+  text-align: center;
+  padding: 1.5rem;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.map-header h3 {
+  color: white;
+  margin: 0 0 0.5rem 0;
+  font-size: 1.5rem;
+}
+
+.map-header p {
+  color: rgba(255, 255, 255, 0.7);
+  margin: 0;
+  font-size: 0.9rem;
+}
+
+.map-canvas {
+  flex: 1;
+  position: relative;
+  user-select: none;
+}
+
+.map-canvas svg {
+  width: 100%;
+  height: 100%;
+}
+
+.connections line {
+  transition: opacity 0.3s ease;
+}
+
+.nodes g {
+  transition: all 0.3s ease;
+}
+
+.nodes g:hover circle {
+  filter: brightness(1.2);
+}
+
+.node-details-panel {
+  position: absolute;
+  top: 50%;
+  right: 2rem;
+  transform: translateY(-50%);
+  background: white;
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+  max-width: 300px;
+  z-index: 10;
+  animation: slideIn 0.3s ease;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-50%) translateX(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(-50%) translateX(0);
+  }
+}
+
+.close-btn {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  color: #999;
+  cursor: pointer;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: all 0.3s ease;
+}
+
+.close-btn:hover {
+  background: #f5f5f5;
+  color: #333;
+}
+
+.node-details-panel h4 {
+  color: #2c3e50;
+  margin: 0 0 0.75rem 0;
+  font-size: 1.2rem;
+  padding-right: 2rem;
+}
+
+.node-details-panel p {
+  color: #666;
+  margin: 0 0 1rem 0;
+  line-height: 1.5;
+  font-size: 0.9rem;
+}
+
+.detail-meta {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.difficulty-badge,
+.status-badge {
+  padding: 0.25rem 0.75rem;
+  border-radius: 12px;
+  font-size: 0.75rem;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.difficulty-badge.beginner {
+  background: #d4edda;
+  color: #155724;
+}
+
+.difficulty-badge.intermediate {
+  background: #fff3cd;
+  color: #856404;
+}
+
+.difficulty-badge.advanced {
+  background: #f8d7da;
+  color: #721c24;
+}
+
+.status-badge.completed {
+  background: #d4edda;
+  color: #155724;
+}
+
+.status-badge.recommended {
+  background: #fff3e0;
+  color: #e65100;
+}
+
+.status-badge.pending {
+  background: #e3f2fd;
+  color: #0d47a1;
+}
+
+.map-controls {
+  position: absolute;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 1rem;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  padding: 1rem;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.map-controls button {
+  padding: 0.5rem 1rem;
+  background: rgba(255, 255, 255, 0.2);
+  color: white;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.map-controls button:hover {
+  background: rgba(255, 255, 255, 0.3);
+  transform: translateY(-2px);
+}
+
+.map-legend {
+  position: absolute;
+  top: 6rem;
+  left: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  padding: 1rem;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  color: white;
+  font-size: 0.9rem;
+}
+
+.legend-circle {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 2px solid white;
+}
+
+.legend-circle.completed {
+  background: #4caf50;
+}
+
+.legend-circle.recommended {
+  background: #ff9800;
+}
+
+.legend-circle.pending {
+  background: #e0e0e0;
+}
+
+@media (max-width: 768px) {
+  .node-details-panel {
+    right: 1rem;
+    left: 1rem;
+    max-width: none;
+    top: auto;
+    bottom: 6rem;
+    transform: none;
+  }
+
+  .map-controls {
+    flex-direction: column;
+    bottom: 1rem;
+    left: 1rem;
+    right: 1rem;
+    transform: none;
+  }
+
+  .map-controls button {
+    width: 100%;
+  }
+
+  .map-legend {
+    top: 5rem;
+    left: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .map-header {
+    padding: 1rem;
+  }
+
+  .map-header h3 {
+    font-size: 1.2rem;
+  }
+
+  .map-legend {
+    font-size: 0.8rem;
+  }
+
+  .legend-circle {
+    width: 16px;
+    height: 16px;
+  }
+}

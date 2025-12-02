@@ -1,0 +1,181 @@
+.leaderboard {
+  width: 100%;
+}
+
+.leaderboard-header {
+  margin-bottom: 2rem;
+}
+
+.leaderboard-header h2 {
+  color: #2c3e50;
+  margin-bottom: 1rem;
+}
+
+.privacy-toggle {
+  background: #f8f9fa;
+  padding: 1rem;
+  border-radius: 8px;
+  border-left: 4px solid #667eea;
+}
+
+.privacy-toggle label {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+.privacy-toggle input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  cursor: pointer;
+}
+
+.privacy-note {
+  margin: 0.5rem 0 0 0;
+  font-size: 0.85rem;
+  color: #666;
+}
+
+.user-rank-card {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  padding: 1.5rem;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+  box-shadow: 0 4px 20px rgba(102, 126, 234, 0.3);
+}
+
+.rank-badge {
+  font-size: 3rem;
+  background: rgba(255, 255, 255, 0.2);
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.rank-info h3 {
+  margin: 0 0 0.5rem 0;
+  font-size: 1.5rem;
+}
+
+.rank-details {
+  margin: 0;
+  opacity: 0.9;
+  font-size: 0.95rem;
+}
+
+.leaderboard-list {
+  background: white;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.leaderboard-entry {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem 1.5rem;
+  border-bottom: 1px solid #f0f0f0;
+  transition: all 0.3s ease;
+}
+
+.leaderboard-entry:hover {
+  background: #f8f9fa;
+}
+
+.leaderboard-entry:last-child {
+  border-bottom: none;
+}
+
+.leaderboard-entry.current-user {
+  background: #e3f2fd;
+  border-left: 4px solid #2196f3;
+}
+
+.leaderboard-entry.gold {
+  background: linear-gradient(90deg, #fff9e6 0%, #ffffff 100%);
+}
+
+.leaderboard-entry.silver {
+  background: linear-gradient(90deg, #f5f5f5 0%, #ffffff 100%);
+}
+
+.leaderboard-entry.bronze {
+  background: linear-gradient(90deg, #fff4e6 0%, #ffffff 100%);
+}
+
+.entry-rank {
+  font-size: 1.5rem;
+  font-weight: bold;
+  min-width: 60px;
+  text-align: center;
+  color: #2c3e50;
+}
+
+.entry-info {
+  flex: 1;
+}
+
+.entry-name {
+  font-weight: 600;
+  color: #2c3e50;
+  font-size: 1.1rem;
+  margin-bottom: 0.25rem;
+}
+
+.entry-stats {
+  color: #666;
+  font-size: 0.9rem;
+}
+
+.entry-achievements {
+  font-size: 1.2rem;
+  color: #666;
+}
+
+.no-leaderboard {
+  text-align: center;
+  padding: 3rem;
+  color: #999;
+  font-size: 1.1rem;
+}
+
+.leaderboard-loading {
+  text-align: center;
+  padding: 2rem;
+  color: #666;
+}
+
+@media (max-width: 768px) {
+  .user-rank-card {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .leaderboard-entry {
+    padding: 1rem;
+    gap: 0.75rem;
+  }
+
+  .entry-rank {
+    min-width: 50px;
+    font-size: 1.2rem;
+  }
+
+  .entry-name {
+    font-size: 1rem;
+  }
+
+  .entry-stats {
+    font-size: 0.85rem;
+  }
+}

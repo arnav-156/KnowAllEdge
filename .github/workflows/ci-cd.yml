@@ -1,0 +1,372 @@
+﻿# =============================================================================
+# CI/CD Pipeline - GitHub Actions
+# Automated testing, building, security scanning, and deployment
+# =============================================================================
+
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches: [ main, develop ]
+    paths:
+      - 'backend/**'
+      - 'frontend/**'
+      - '.github/workflows/**'
+  pull_request:
+    branches: [ main, develop ]
+  workflow_dispatch:  # Manual trigger
+
+env:
+  DOCKER_REGISTRY: ghcr.io
+  IMAGE_NAME: ${{ github.repository }}/backend
+  PYTHON_VERSION: '3.13'
+  NODE_VERSION: '18'
+
+jobs:
+  # =============================================================================
+  # JOB 1: Backend Testing
+  # =============================================================================
+  backend-test:
+    name: Backend Tests
+    runs-on: ubuntu-latest
+    
+    services:
+      redis:
+        image: redis:7-alpine
+        ports:
+          - 6379:6379
+        options: >-
+          --health-cmd "redis-cli ping"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+    
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: ${{ env.PYTHON_VERSION }}
+        cache: 'pip'
+    
+    - name: Install dependencies
+      working-directory: ./backend
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+        pip install pytest pytest-cov pytest-mock
+    
+    - name: Run linting
+      working-directory: ./backend
+      run: |
+        pip install flake8 black isort
+        flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
+        black --check .
+        isort --check-only .
+    
+    - name: Run tests with coverage
+      working-directory: ./backend
+      env:
+        REDIS_HOST: localhost
+        REDIS_PORT: 6379
+        REDIS_ENABLED: true
+      run: |
+        pytest --cov=. --cov-report=xml --cov-report=html -v
+    
+    - name: Upload coverage to Codecov
+      uses: codecov/codecov-action@v4
+      with:
+        file: ./backend/coverage.xml
+        flags: backend
+        name: backend-coverage
+    
+    - name: Upload coverage artifacts
+      uses: actions/upload-artifact@v4
+      with:
+        name: backend-coverage
+        path: ./backend/htmlcov
+
+  # =============================================================================
+  # JOB 2: Frontend Testing
+  # =============================================================================
+  frontend-test:
+    name: Frontend Tests
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+    
+    - name: Set up Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: ${{ env.NODE_VERSION }}
+        cache: 'npm'
+        cache-dependency-path: frontend/package-lock.json
+    
+    - name: Install dependencies
+      working-directory: ./frontend
+      run: npm ci
+    
+    - name: Run linting
+      working-directory: ./frontend
+      run: npm run lint
+    
+    - name: Run tests
+      working-directory: ./frontend
+      run: npm test
+    
+    - name: Build frontend
+      working-directory: ./frontend
+      run: npm run build
+
+  # =============================================================================
+  # JOB 3: Security Scanning
+  # =============================================================================
+  security-scan:
+    name: Security Scanning
+    runs-on: ubuntu-latest
+    needs: [backend-test, frontend-test]
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+    
+    # Python security scanning
+    - name: Run Bandit (Python security)
+      working-directory: ./backend
+      run: |
+        pip install bandit
+        bandit -r . -f json -o bandit-report.json || true
+    
+    - name: Run Safety (Python dependencies)
+      working-directory: ./backend
+      run: |
+        pip install safety
+        safety check --json || true
+    
+    # JavaScript security scanning
+    - name: Run npm audit
+      working-directory: ./frontend
+      run: |
+        npm audit --audit-level=moderate || true
+    
+    # Container scanning
+    - name: Run Trivy vulnerability scanner
+      uses: aquasecurity/trivy-action@master
+      with:
+        scan-type: 'fs'
+        scan-ref: './backend'
+        format: 'sarif'
+        output: 'trivy-results.sarif'
+    
+    - name: Upload Trivy results to GitHub Security
+      uses: github/codeql-action/upload-sarif@v3
+      with:
+        sarif_file: 'trivy-results.sarif'
+
+  # =============================================================================
+  # JOB 4: Build Docker Image
+  # =============================================================================
+  build-docker:
+    name: Build Docker Image
+    runs-on: ubuntu-latest
+    needs: [backend-test, security-scan]
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    
+    permissions:
+      contents: read
+      packages: write
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+    
+    - name: Set up Docker Buildx
+      uses: docker/setup-buildx-action@v3
+    
+    - name: Log in to Container Registry
+      uses: docker/login-action@v3
+      with:
+        registry: ${{ env.DOCKER_REGISTRY }}
+        username: ${{ github.actor }}
+        password: ${{ secrets.GITHUB_TOKEN }}
+    
+    - name: Extract metadata
+      id: meta
+      uses: docker/metadata-action@v5
+      with:
+        images: ${{ env.DOCKER_REGISTRY }}/${{ env.IMAGE_NAME }}
+        tags: |
+          type=ref,event=branch
+          type=ref,event=pr
+          type=semver,pattern={{version}}
+          type=semver,pattern={{major}}.{{minor}}
+          type=sha,prefix={{branch}}-
+          type=raw,value=latest,enable={{is_default_branch}}
+    
+    - name: Build and push Docker image
+      uses: docker/build-push-action@v5
+      with:
+        context: ./backend
+        file: ./backend/Dockerfile
+        push: true
+        tags: ${{ steps.meta.outputs.tags }}
+        labels: ${{ steps.meta.outputs.labels }}
+        cache-from: type=gha
+        cache-to: type=gha,mode=max
+        build-args: |
+          BUILD_DATE=${{ github.event.head_commit.timestamp }}
+          VCS_REF=${{ github.sha }}
+    
+    - name: Scan Docker image
+      uses: aquasecurity/trivy-action@master
+      with:
+        image-ref: ${{ env.DOCKER_REGISTRY }}/${{ env.IMAGE_NAME }}:latest
+        format: 'sarif'
+        output: 'docker-trivy-results.sarif'
+    
+    - name: Upload Docker scan results
+      uses: github/codeql-action/upload-sarif@v3
+      with:
+        sarif_file: 'docker-trivy-results.sarif'
+
+  # =============================================================================
+  # JOB 5: Deploy to Staging (Kubernetes)
+  # =============================================================================
+  deploy-staging:
+    name: Deploy to Staging
+    runs-on: ubuntu-latest
+    needs: [build-docker]
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    environment:
+      name: staging
+      url: https://staging.KNOWALLEDGE.com
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+    
+    - name: Set up kubectl
+      uses: azure/setup-kubectl@v3
+      with:
+        version: 'latest'
+    
+    - name: Configure kubectl
+      run: |
+        mkdir -p $HOME/.kube
+        echo "${{ secrets.KUBE_CONFIG_STAGING }}" > $HOME/.kube/config
+    
+    - name: Update Kubernetes secrets
+      run: |
+        kubectl create secret generic KNOWALLEDGE-secrets \
+          --from-literal=google-api-key=${{ secrets.GOOGLE_API_KEY }} \
+          --from-literal=redis-password=${{ secrets.REDIS_PASSWORD }} \
+          --from-literal=jwt-secret=${{ secrets.JWT_SECRET }} \
+          --namespace=staging \
+          --dry-run=client -o yaml | kubectl apply -f -
+    
+    - name: Deploy to Kubernetes
+      working-directory: ./backend/k8s
+      run: |
+        kubectl apply -f configmap.yaml --namespace=staging
+        kubectl apply -f pvc.yaml --namespace=staging
+        kubectl apply -f service.yaml --namespace=staging
+        kubectl apply -f deployment.yaml --namespace=staging
+        kubectl apply -f ingress.yaml --namespace=staging
+    
+    - name: Wait for rollout
+      run: |
+        kubectl rollout status deployment/KNOWALLEDGE-backend --namespace=staging --timeout=5m
+    
+    - name: Run smoke tests
+      run: |
+        sleep 30
+        curl -f https://staging.KNOWALLEDGE.com/api/health || exit 1
+        curl -f https://staging.KNOWALLEDGE.com/api/ready || exit 1
+    
+    - name: Notify deployment
+      uses: 8398a7/action-slack@v3
+      with:
+        status: ${{ job.status }}
+        text: 'Staging deployment ${{ job.status }}'
+        webhook_url: ${{ secrets.SLACK_WEBHOOK }}
+      if: always()
+
+  # =============================================================================
+  # JOB 6: Deploy to Production (Manual Approval)
+  # =============================================================================
+  deploy-production:
+    name: Deploy to Production
+    runs-on: ubuntu-latest
+    needs: [deploy-staging]
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    environment:
+      name: production
+      url: https://KNOWALLEDGE.com
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+    
+    - name: Set up kubectl
+      uses: azure/setup-kubectl@v3
+      with:
+        version: 'latest'
+    
+    - name: Configure kubectl
+      run: |
+        mkdir -p $HOME/.kube
+        echo "${{ secrets.KUBE_CONFIG_PRODUCTION }}" > $HOME/.kube/config
+    
+    - name: Update Kubernetes secrets
+      run: |
+        kubectl create secret generic KNOWALLEDGE-secrets \
+          --from-literal=google-api-key=${{ secrets.GOOGLE_API_KEY }} \
+          --from-literal=redis-password=${{ secrets.REDIS_PASSWORD_PROD }} \
+          --from-literal=jwt-secret=${{ secrets.JWT_SECRET_PROD }} \
+          --namespace=production \
+          --dry-run=client -o yaml | kubectl apply -f -
+    
+    - name: Deploy to Kubernetes
+      working-directory: ./backend/k8s
+      run: |
+        kubectl apply -f configmap.yaml --namespace=production
+        kubectl apply -f pvc.yaml --namespace=production
+        kubectl apply -f service.yaml --namespace=production
+        kubectl apply -f deployment.yaml --namespace=production
+        kubectl apply -f ingress.yaml --namespace=production
+    
+    - name: Wait for rollout
+      run: |
+        kubectl rollout status deployment/KNOWALLEDGE-backend --namespace=production --timeout=10m
+    
+    - name: Run production smoke tests
+      run: |
+        sleep 30
+        curl -f https://KNOWALLEDGE.com/api/health || exit 1
+        curl -f https://KNOWALLEDGE.com/api/ready || exit 1
+    
+    - name: Notify production deployment
+      uses: 8398a7/action-slack@v3
+      with:
+        status: ${{ job.status }}
+        text: 'Production deployment ${{ job.status }}'
+        webhook_url: ${{ secrets.SLACK_WEBHOOK }}
+      if: always()
+    
+    - name: Create GitHub Release
+      uses: actions/create-release@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        tag_name: v${{ github.run_number }}
+        release_name: Release v${{ github.run_number }}
+        body: |
+          Production deployment successful
+          Commit: ${{ github.sha }}
+          Build: ${{ github.run_number }}
+        draft: false
+        prerelease: false

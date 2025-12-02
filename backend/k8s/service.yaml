@@ -1,0 +1,134 @@
+﻿# =============================================================================
+# Kubernetes Service Manifest
+# Exposes backend pods with load balancing
+# =============================================================================
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: KNOWALLEDGE-backend
+  namespace: default
+  labels:
+    app: KNOWALLEDGE
+    component: backend
+  annotations:
+    prometheus.io/scrape: "true"
+    prometheus.io/port: "5000"
+spec:
+  type: ClusterIP
+  selector:
+    app: KNOWALLEDGE
+    component: backend
+  ports:
+  - name: http
+    port: 80
+    targetPort: 5000
+    protocol: TCP
+  sessionAffinity: None
+  
+---
+# =============================================================================
+# Redis Service
+# Provides shared state storage for all backend pods
+# =============================================================================
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: redis
+  namespace: default
+  labels:
+    app: KNOWALLEDGE
+    component: redis
+spec:
+  type: ClusterIP
+  selector:
+    app: KNOWALLEDGE
+    component: redis
+  ports:
+  - name: redis
+    port: 6379
+    targetPort: 6379
+    protocol: TCP
+
+---
+# =============================================================================
+# Redis Deployment
+# Single-instance Redis for development (use Redis cluster for production)
+# =============================================================================
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: redis
+  namespace: default
+  labels:
+    app: KNOWALLEDGE
+    component: redis
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: KNOWALLEDGE
+      component: redis
+  template:
+    metadata:
+      labels:
+        app: KNOWALLEDGE
+        component: redis
+    spec:
+      containers:
+      - name: redis
+        image: redis:7-alpine
+        ports:
+        - containerPort: 6379
+        args:
+        - redis-server
+        - --requirepass
+        - $(REDIS_PASSWORD)
+        - --appendonly
+        - "yes"
+        - --maxmemory
+        - "512mb"
+        - --maxmemory-policy
+        - allkeys-lru
+        env:
+        - name: REDIS_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: KNOWALLEDGE-secrets
+              key: redis-password
+        resources:
+          requests:
+            cpu: 100m
+            memory: 256Mi
+          limits:
+            cpu: 500m
+            memory: 512Mi
+        livenessProbe:
+          exec:
+            command:
+            - redis-cli
+            - --no-auth-warning
+            - -a
+            - $(REDIS_PASSWORD)
+            - ping
+          initialDelaySeconds: 30
+          periodSeconds: 10
+        readinessProbe:
+          exec:
+            command:
+            - redis-cli
+            - --no-auth-warning
+            - -a
+            - $(REDIS_PASSWORD)
+            - ping
+          initialDelaySeconds: 5
+          periodSeconds: 5
+        volumeMounts:
+        - name: redis-data
+          mountPath: /data
+      volumes:
+      - name: redis-data
+        persistentVolumeClaim:
+          claimName: redis-pvc

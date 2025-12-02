@@ -1,0 +1,295 @@
+/* ✅ GDPR: Cookie Consent Banner Styles */
+
+.cookie-consent-overlay {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 10000;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(4px);
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+.cookie-consent-banner {
+  background: var(--background-primary, #1e1e1e);
+  border-top: 3px solid var(--primary-color, #4a9eff);
+  box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.3);
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 24px 32px;
+  border-radius: 12px 12px 0 0;
+}
+
+.cookie-consent-content {
+  color: var(--text-primary, #e0e0e0);
+}
+
+.cookie-consent-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin: 0 0 16px 0;
+  color: var(--text-primary, #ffffff);
+}
+
+.cookie-consent-description {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  margin: 0 0 12px 0;
+  color: var(--text-secondary, #b0b0b0);
+}
+
+.cookie-consent-legal {
+  font-size: 0.875rem;
+  line-height: 1.5;
+  margin: 0 0 20px 0;
+  color: var(--text-secondary, #a0a0a0);
+}
+
+.cookie-consent-legal a {
+  color: var(--primary-color, #4a9eff);
+  text-decoration: underline;
+  margin-left: 4px;
+}
+
+.cookie-consent-legal a:hover {
+  color: var(--primary-hover, #6bb3ff);
+}
+
+/* Cookie Details */
+.cookie-consent-details {
+  background: var(--background-secondary, #2a2a2a);
+  border-radius: 8px;
+  padding: 20px;
+  margin: 20px 0;
+  max-height: 400px;
+  overflow-y: auto;
+}
+
+.cookie-consent-details h3 {
+  font-size: 1.1rem;
+  margin: 0 0 16px 0;
+  color: var(--text-primary, #ffffff);
+}
+
+.cookie-category {
+  margin-bottom: 20px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--border-color, #404040);
+}
+
+.cookie-category:last-child {
+  border-bottom: none;
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+
+.cookie-category-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.cookie-category-header label {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  user-select: none;
+}
+
+.cookie-category-header input[type="checkbox"] {
+  width: 20px;
+  height: 20px;
+  margin-right: 12px;
+  cursor: pointer;
+  accent-color: var(--primary-color, #4a9eff);
+}
+
+.cookie-category-header input[type="checkbox"]:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.cookie-category-name {
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--text-primary, #ffffff);
+}
+
+.required-badge {
+  display: inline-block;
+  background: var(--warning-color, #ff9800);
+  color: #000;
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 2px 8px;
+  border-radius: 12px;
+  margin-left: 8px;
+}
+
+.cookie-category-description {
+  font-size: 0.875rem;
+  line-height: 1.5;
+  color: var(--text-secondary, #a0a0a0);
+  margin: 0;
+  padding-left: 32px;
+}
+
+/* Actions */
+.cookie-consent-actions {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin: 20px 0 16px 0;
+}
+
+.cookie-consent-actions .btn {
+  padding: 12px 24px;
+  font-size: 0.95rem;
+  font-weight: 500;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.cookie-consent-actions .btn-primary {
+  background: var(--primary-color, #4a9eff);
+  color: #ffffff;
+}
+
+.cookie-consent-actions .btn-primary:hover {
+  background: var(--primary-hover, #6bb3ff);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(74, 158, 255, 0.3);
+}
+
+.cookie-consent-actions .btn-secondary {
+  background: var(--background-tertiary, #3a3a3a);
+  color: var(--text-primary, #ffffff);
+  border: 1px solid var(--border-color, #505050);
+}
+
+.cookie-consent-actions .btn-secondary:hover {
+  background: var(--background-hover, #454545);
+}
+
+.cookie-consent-actions .btn-link {
+  background: transparent;
+  color: var(--primary-color, #4a9eff);
+  text-decoration: underline;
+  padding: 12px 16px;
+}
+
+.cookie-consent-actions .btn-link:hover {
+  color: var(--primary-hover, #6bb3ff);
+}
+
+/* Footer */
+.cookie-consent-footer {
+  text-align: center;
+  margin-top: 16px;
+  padding-top: 16px;
+  border-top: 1px solid var(--border-color, #404040);
+}
+
+.cookie-consent-footer small {
+  font-size: 0.8rem;
+  color: var(--text-tertiary, #808080);
+  line-height: 1.4;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .cookie-consent-banner {
+    padding: 20px;
+    border-radius: 0;
+  }
+
+  .cookie-consent-title {
+    font-size: 1.25rem;
+  }
+
+  .cookie-consent-actions {
+    flex-direction: column;
+  }
+
+  .cookie-consent-actions .btn {
+    width: 100%;
+  }
+
+  .cookie-consent-details {
+    max-height: 300px;
+  }
+}
+
+/* Dark mode (default) */
+:root {
+  --background-primary: #1e1e1e;
+  --background-secondary: #2a2a2a;
+  --background-tertiary: #3a3a3a;
+  --background-hover: #454545;
+  --text-primary: #ffffff;
+  --text-secondary: #b0b0b0;
+  --text-tertiary: #808080;
+  --primary-color: #4a9eff;
+  --primary-hover: #6bb3ff;
+  --warning-color: #ff9800;
+  --border-color: #404040;
+}
+
+/* Light mode override */
+@media (prefers-color-scheme: light) {
+  :root {
+    --background-primary: #ffffff;
+    --background-secondary: #f5f5f5;
+    --background-tertiary: #e0e0e0;
+    --background-hover: #d0d0d0;
+    --text-primary: #000000;
+    --text-secondary: #505050;
+    --text-tertiary: #808080;
+    --border-color: #d0d0d0;
+  }
+}
+
+/* Accessibility */
+.cookie-consent-banner:focus-within {
+  outline: 2px solid var(--primary-color, #4a9eff);
+  outline-offset: 4px;
+}
+
+button:focus-visible {
+  outline: 2px solid var(--primary-color, #4a9eff);
+  outline-offset: 2px;
+}
+
+/* Scrollbar styling for details */
+.cookie-consent-details::-webkit-scrollbar {
+  width: 8px;
+}
+
+.cookie-consent-details::-webkit-scrollbar-track {
+  background: var(--background-primary, #1e1e1e);
+  border-radius: 4px;
+}
+
+.cookie-consent-details::-webkit-scrollbar-thumb {
+  background: var(--border-color, #404040);
+  border-radius: 4px;
+}
+
+.cookie-consent-details::-webkit-scrollbar-thumb:hover {
+  background: var(--text-secondary, #606060);
+}

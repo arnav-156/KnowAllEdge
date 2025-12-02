@@ -1,0 +1,16 @@
+{
+  "users": [
+    {
+      "email": "test@example.com",
+      "password": "password123",
+      "role": "user",
+      "quota_tier": "free"
+    },
+    {
+      "email": "admin@example.com",
+      "password": "admin123",
+      "role": "admin",
+      "quota_tier": "premium"
+    }
+  ]
+}

@@ -1,0 +1,29 @@
+# Bandit Security Scanner Configuration
+# Requirements: 6.7 - Set up security testing tools
+
+[bandit]
+# Exclude paths
+exclude_dirs = [
+    '/tests/',
+    '/venv/',
+    '/.venv/',
+    '/node_modules/',
+    '/__pycache__/',
+    '/migrations/'
+]
+
+# Test IDs to skip
+skips = []
+
+# Severity level (LOW, MEDIUM, HIGH)
+level = LOW
+
+# Confidence level (LOW, MEDIUM, HIGH)
+confidence = LOW
+
+# Output format (csv, json, txt, html, screen, yaml)
+format = screen
+
+# Tests to run (comma-separated list)
+# Leave empty to run all tests
+tests = []

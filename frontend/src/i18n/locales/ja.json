@@ -1,0 +1,430 @@
+﻿{
+  "common": {
+    "appName": "KNOWALLEDGE",
+    "loading": "読み込み中...",
+    "error": "エラー",
+    "success": "成功",
+    "warning": "警告",
+    "info": "情報",
+    "close": "閉じる",
+    "cancel": "キャンセル",
+    "confirm": "確認",
+    "save": "保存",
+    "delete": "削除",
+    "edit": "編集",
+    "yes": "はい",
+    "no": "いいえ",
+    "ok": "OK",
+    "back": "戻る",
+    "next": "次へ",
+    "continue": "続行",
+    "skip": "スキップ",
+    "retry": "再試行",
+    "or": "または"
+  },
+  "navigation": {
+    "skipToMain": "メインコンテンツへスキップ",
+    "home": "ホーム",
+    "metrics": "メトリクス",
+    "privacy": "プライバシー",
+    "settings": "設定",
+    "login": "ログイン / 登録",
+    "logout": "ログアウト",
+    "profile": "プロフィール",
+    "dashboard": "ダッシュボード"
+  },
+  "homepage": {
+    "welcome": "KNOWALLEDGEへようこそ",
+    "tagline": "学習のための直感的なランドスケープ",
+    "question": "今日は何を学びたいですか？",
+    "tooltipsOn": "💡 ツールチップ表示中",
+    "showHints": "💡 ヒントを表示",
+    "tooltipsEnabled": "ツールチップが有効です - 要素にカーソルを合わせるとヘルプが表示されます！",
+    "tooltipsHidden": "ツールチップ非表示",
+    "toggleTooltips": "初めての方のための役立つヒントを切り替える",
+    "showTooltips": "役立つツールチップを表示",
+    "hideTooltips": "役立つツールチップを非表示",
+    "recentTopics": {
+      "title": "📚 最近のトピックから選択",
+      "placeholder": "-- 最近のトピックを選択してください --",
+      "description": "最近のトピックが{{count}}件",
+      "description_plural": "最近のトピックが{{count}}件",
+      "saved": "保存済み",
+      "loaded": "トピックを読み込みました: {{topic}}"
+    },
+    "topicInput": {
+      "label": "✏️ トピックを入力",
+      "placeholder": "トピックを入力してください（例：機械学習、量子物理学）",
+      "ariaLabel": "学習したいトピックを入力",
+      "helpText": "学習したいトピックを入力してください",
+      "charCount": "{{current}}/{{max}} 文字",
+      "required": "トピックは必須です",
+      "tooShort": "トピックは3文字以上で入力してください",
+      "tooLong": "トピックは200文字以下で入力してください"
+    },
+    "imageUpload": {
+      "title": "画像を選択",
+      "label": "トピックを抽出するために画像をアップロード",
+      "description": "対応形式：PNG、JPG、GIF、WebP（最大10MB）",
+      "processing": "画像を処理中...",
+      "progress": "{{percent}}% • 画像を処理中...",
+      "remove": "アップロードした画像を削除",
+      "error": {
+        "invalidType": "有効な画像ファイル（PNG、JPG、GIF、またはWebP）をアップロードしてください",
+        "tooLarge": "画像ファイルが大きすぎます。最大サイズは{{max}}MBです",
+        "uploadFailed": "画像のアップロードに失敗しました。もう一度お試しください。"
+      }
+    },
+    "preferences": {
+      "remember": "最近のトピックを記憶する",
+      "ariaLabel": "今後のセッションのために設定を記憶する"
+    },
+    "generate": {
+      "button": "サブトピックを生成",
+      "generating": "生成中...",
+      "ariaLabel": "入力からサブトピックを生成",
+      "ariaBusy": "サブトピックを生成中です。しばらくお待ちください",
+      "success": "サブトピックを生成中...",
+      "error": "サブトピックの生成に失敗しました。もう一度お試しください。"
+    },
+    "about": {
+      "whatIs": "KNOWALLEDGEとは？",
+      "description": "KNOWALLEDGEは、お客様のニーズに合わせて学習コンテンツをパーソナライズするために設計された、インタラクティブなプラットフォームです。KNOWALLEDGEを使えば、概念的に関連付けられたランドスケープで学習を探求できます。トピックを入力し、いくつかの項目を選択するだけで、お客様専用のパーソナライズされたマインドマップを生成いたします。",
+      "cta": "さあ、何をためらっているのですか？",
+      "why": "KNOWALLEDGEを開発した理由",
+      "reason": "学生時代、私たちは常に、混乱やストレスを解消するための適切なリソースをインターネットで探し回っていました。しかし、見つけた説明は、さらなる疑問を生むばかりでした。個人的なニーズに合った実りある答えを見つけるための、直感的で信頼できるプロセスがいかに重要であるかを痛感しました。そこでKNOWALLEDGEの登場です。私たちの知識探求に完璧な終止符を打つものとなるでしょう。"
+    },
+    "metricsLink": "📊 メトリクスダッシュボード",
+    "validationErrors": {
+      "error": "⚠️ {{message}}",
+      "required": "トピックを入力するか、画像をアップロードしてください",
+      "processing": "現在の処理が完了するまでお待ちください"
+    },
+    "welcomeMessages": {
+      "firstTime": "👋 ようこそ！要素にカーソルを合わせると役立つヒントが表示されます。",
+      "returnVisitor": "おかえりなさい！"
+    }
+  },
+  "graphPage": {
+    "title": "コンセプトマップ: {{topic}}",
+    "loading": "コンセプトマップを生成しています...",
+    "error": "コンセプトマップの読み込みに失敗しました",
+    "filters": {
+      "title": "🎯 ノードを絞り込む",
+      "showConcepts": "概念を表示",
+      "showExamples": "例を表示",
+      "showQuestions": "質問を表示",
+      "concept": "概念",
+      "example": "例",
+      "question": "質問"
+    },
+    "difficulty": {
+      "easy": "簡単",
+      "medium": "中程度",
+      "hard": "難しい"
+    },
+    "search": {
+      "placeholder": "ノードを検索...",
+      "ariaLabel": "グラフ内の特定のノードを検索します",
+      "results": "{{count}}件見つかりました",
+      "results_plural": "{{count}}件見つかりました",
+      "noResults": "'{{query}}'に一致するノードは見つかりませんでした"
+    },
+    "keyboard": {
+      "navigation": "キーボードナビゲーション",
+      "shortcuts": "キーボードショートカット",
+      "help": "キーボードショートカットを表示するにはHキーを押してください",
+      "arrowKeys": "↑↓←→ または Tab/Shift+Tab - ノード間を移動します",
+      "enter": "Enter または Space - 選択したノードの詳細を開きます",
+      "escape": "Escape - モーダルを閉じる / 選択を解除する",
+      "search": "Ctrl+F - 検索にフォーカスする",
+      "export": "Ctrl+E - グラフをエクスポートする",
+      "numbers": "1-3 - ノードタイプフィルターを切り替える",
+      "helpKey": "H - このヘルプを表示する",
+      "selectedNode": "選択中: {{node}}、{{type}}ノード",
+      "focusAnnouncement": "ノードにフォーカスしました。Enterキーを押して詳細を表示してください。"
+    },
+    "nodeModal": {
+      "close": "ノードの詳細を閉じる",
+      "difficulty": "難易度: {{level}}",
+      "type": "タイプ: {{type}}",
+      "relatedNodes": "関連ノード",
+      "explanation": "説明",
+      "examples": "例",
+      "resources": "追加リソース"
+    },
+    "export": {
+      "button": "📥 エクスポート",
+      "ariaLabel": "コンセプトマップを画像またはPDFとしてエクスポートします",
+      "formats": {
+        "png": "PNGとしてエクスポート",
+        "svg": "SVGとしてエクスポート",
+        "pdf": "PDFとしてエクスポート",
+        "json": "JSONとしてエクスポート"
+      },
+      "success": "グラフが正常にエクスポートされました！",
+      "error": "グラフのエクスポートに失敗しました。もう一度お試しください。",
+      "filename": "KNOWALLEDGE-{{topic}}-{{date}}"
+    },
+    "zoom": {
+      "in": "拡大",
+      "out": "縮小",
+      "reset": "ズームをリセット",
+      "fit": "画面に合わせる"
+    },
+    "layout": {
+      "title": "レイアウトオプション",
+      "dagre": "階層型",
+      "force": "力指向型",
+      "circular": "円形",
+      "grid": "グリッド"
+    },
+    "stats": {
+      "nodes": "{{count}}ノード",
+      "nodes_plural": "{{count}}ノード",
+      "connections": "{{count}}接続",
+      "connections_plural": "{{count}}接続"
+    }
+  },
+  "subtopicPage": {
+    "title": "サブトピックの選択",
+    "description": "コンセプトマップで学習したいサブトピックを選んでください。",
+    "selectAll": "全て選択",
+    "deselectAll": "全て選択解除",
+    "selected": "{{count}}個選択されています",
+    "generate": "コンセプトマップを生成",
+    "generating": "マップを生成中です...",
+    "minRequired": "少なくとも{{min}}個のサブトピックを選択してください。",
+    "maxAllowed": "最大{{max}}個のサブトピックを選択できます。",
+    "back": "← トピック選択に戻る",
+    "subtopic": "サブトピック"
+  },
+  "auth": {
+    "login": {
+      "title": "アカウントにログイン",
+      "email": "メールアドレス",
+      "password": "パスワード",
+      "rememberMe": "ログイン状態を保持する",
+      "forgotPassword": "パスワードをお忘れですか？",
+      "submit": "ログイン",
+      "noAccount": "アカウントをお持ちではありませんか？",
+      "signUp": "新規登録",
+      "success": "ログインに成功しました！おかえりなさい。",
+      "error": "メールアドレスまたはパスワードが無効です"
+    },
+    "register": {
+      "title": "アカウントを作成",
+      "username": "ユーザー名",
+      "email": "メールアドレス",
+      "password": "パスワード",
+      "confirmPassword": "パスワードを確認",
+      "terms": "利用規約とプライバシーポリシーに同意します",
+      "submit": "アカウントを作成",
+      "hasAccount": "すでにアカウントをお持ちですか？",
+      "signIn": "ログイン",
+      "success": "アカウントが正常に作成されました！KNOWALLEDGEへようこそ。",
+      "error": {
+        "passwordMismatch": "パスワードが一致しません",
+        "weakPassword": "パスワードは8文字以上である必要があります",
+        "emailExists": "このメールアドレスはすでに使用されています",
+        "usernameExists": "このユーザー名はすでに使用されています",
+        "termsRequired": "利用規約に同意する必要があります"
+      }
+    },
+    "profile": {
+      "userMenu": "ユーザーメニュー",
+      "tier": "ティア: {{tier}}",
+      "admin": "🛡️ 管理者",
+      "quotaLimits": "📊 クォータ制限",
+      "requestsPerMinute": "1分あたりのリクエスト数",
+      "requestsPerDay": "1日あたりのリクエスト数",
+      "unlimited": "∞"
+    }
+  },
+  "settings": {
+    "title": "設定",
+    "language": {
+      "title": "🌐 言語",
+      "current": "現在の言語",
+      "select": "言語を選択",
+      "changed": "言語が{{language}}に変更されました"
+    },
+    "theme": {
+      "title": "🎨 テーマ",
+      "light": "ライト",
+      "dark": "ダーク",
+      "auto": "自動 (システム)"
+    },
+    "accessibility": {
+      "title": "♿ アクセシビリティ",
+      "reducedMotion": "動きを減らす",
+      "highContrast": "ハイコントラストモード",
+      "fontSize": "フォントサイズ",
+      "screenReader": "スクリーンリーダーの最適化"
+    },
+    "privacy": {
+      "title": "🔒 プライバシー",
+      "cookies": "Cookieの設定",
+      "analytics": "分析を許可する",
+      "dataExport": "データをエクスポートする",
+      "deleteAccount": "アカウントを削除する"
+    },
+    "saved": "設定が正常に保存されました",
+    "error": "設定の保存に失敗しました"
+  },
+  "privacy": {
+    "title": "プライバシーポリシー",
+    "lastUpdated": "最終更新日: {{date}}",
+    "sections": {
+      "dataCollection": "データ収集",
+      "dataUsage": "データの利用方法",
+      "dataSecurity": "データセキュリティ",
+      "yourRights": "お客様の権利",
+      "cookies": "クッキーポリシー",
+      "contact": "お問い合わせ"
+    }
+  },
+  "cookies": {
+    "banner": {
+      "title": "🍪 お客様のプライバシーを尊重いたします",
+      "description": "当サイトでは、お客様の体験を向上させ、サイトの利用状況を分析し、コンテンツをパーソナライズするために、クッキーおよび類似の技術を使用しています。「すべて同意する」をクリックすることにより、お客様は当社のクッキーの使用に同意したものとみなされます。",
+      "acceptAll": "すべて同意する",
+      "rejectAll": "すべて拒否する",
+      "customize": "設定をカスタマイズする",
+      "learnMore": "詳細を見る"
+    },
+    "categories": {
+      "necessary": {
+        "title": "必須",
+        "description": "ウェブサイトが適切に機能するために不可欠です。無効にすることはできません。"
+      },
+      "functional": {
+        "title": "機能",
+        "description": "お客様の設定を記憶するなど、機能性を向上させます。"
+      },
+      "analytics": {
+        "title": "分析",
+        "description": "訪問者が当社のウェブサイトとどのようにやり取りするかを理解するのに役立ちます。"
+      },
+      "performance": {
+        "title": "パフォーマンス",
+        "description": "パフォーマンスとユーザーエクスペリエンスを最適化するために使用されます。"
+      }
+    },
+    "savePreferences": "設定を保存する",
+    "saved": "✅ プライバシー同意が保存されました"
+  },
+  "metrics": {
+    "title": "メトリクスダッシュボード",
+    "overview": "概要",
+    "requests": {
+      "total": "合計リクエスト数",
+      "today": "今日のリクエスト数",
+      "perMinute": "1分あたりのリクエスト数",
+      "perHour": "1時間あたりのリクエスト数"
+    },
+    "users": {
+      "total": "合計ユーザー数",
+      "active": "アクティブユーザー数",
+      "new": "新規ユーザー (24時間)"
+    },
+    "performance": {
+      "avgResponseTime": "平均応答時間",
+      "uptime": "稼働時間",
+      "errorRate": "エラー率"
+    },
+    "refresh": "データの更新",
+    "export": "レポートのエクスポート",
+    "adminOnly": "管理者アクセスが必要です"
+  },
+  "errors": {
+    "boundary": {
+      "title": "おっと、問題が発生しました",
+      "description": "予期せぬエラーが発生しました。ご安心ください、担当チームに通知いたしました。",
+      "action": "ホームページに戻る",
+      "details": "エラーの詳細",
+      "report": "この問題を報告する"
+    },
+    "404": {
+      "title": "ページが見つかりません",
+      "description": "お探しのページは存在しません。",
+      "action": "ホームページへ移動"
+    },
+    "500": {
+      "title": "サーバーエラー",
+      "description": "サーバーでエラーが発生しました。後でもう一度お試しください。",
+      "action": "もう一度試す"
+    },
+    "network": {
+      "title": "ネットワークエラー",
+      "description": "サーバーに接続できません。インターネット接続をご確認ください。",
+      "action": "接続を再試行"
+    },
+    "timeout": {
+      "title": "リクエストタイムアウト",
+      "description": "リクエストの処理に時間がかかりすぎました。もう一度お試しください。",
+      "action": "再試行"
+    }
+  },
+  "loading": {
+    "default": "読み込み中...",
+    "graph": "コンセプトマップを生成中...",
+    "subtopics": "サブトピックを検索中...",
+    "authenticating": "認証中...",
+    "saving": "保存中...",
+    "exporting": "エクスポート中...",
+    "processing": "処理中...",
+    "uploading": "アップロード中...",
+    "analyzing": "分析中...",
+    "please-wait": "しばらくお待ちください..."
+  },
+  "notifications": {
+    "welcome": "👋 ようこそ！要素にカーソルを合わせると、役立つヒントが表示されます。",
+    "saved": "✅ 保存しました。",
+    "deleted": "🗑️ 削除しました。",
+    "copied": "📋 クリップボードにコピーしました。",
+    "error": "❌ {{message}}",
+    "success": "✅ {{message}}",
+    "warning": "⚠️ {{message}}",
+    "info": "ℹ️ {{message}}"
+  },
+  "accessibility": {
+    "screenReaderOnly": "スクリーンリーダー専用コンテンツ",
+    "skipLink": "メインコンテンツへスキップ",
+    "openMenu": "メニューを開く",
+    "closeMenu": "メニューを閉じる",
+    "toggleNavigation": "ナビゲーションの切り替え",
+    "currentPage": "現在のページ",
+    "loading": "コンテンツを読み込み中",
+    "closeDialog": "ダイアログを閉じる",
+    "closeNotification": "通知を閉じる",
+    "previousPage": "前のページ",
+    "nextPage": "次のページ",
+    "pageOf": "{{total}}ページ中{{current}}ページ目",
+    "sortBy": "{{field}}で並べ替え",
+    "filterBy": "{{field}}で絞り込み",
+    "searchResults": "「{{query}}」の検索結果"
+  },
+  "dates": {
+    "today": "今日",
+    "yesterday": "昨日",
+    "tomorrow": "明日",
+    "daysAgo": "{{count}}日前",
+    "daysAgo_plural": "{{count}}日前",
+    "hoursAgo": "{{count}}時間前",
+    "hoursAgo_plural": "{{count}}時間前",
+    "minutesAgo": "{{count}}分前",
+    "minutesAgo_plural": "{{count}}分前",
+    "justNow": "たった今"
+  },
+  "validation": {
+    "required": "この項目は必須です",
+    "email": "有効なメールアドレスを入力してください",
+    "minLength": "{{min}}文字以上で入力してください",
+    "maxLength": "{{max}}文字以下で入力してください",
+    "number": "有効な数値を入力してください",
+    "url": "有効なURLを入力してください",
+    "phone": "有効な電話番号を入力してください",
+    "pattern": "形式が無効です"
+  }
+}

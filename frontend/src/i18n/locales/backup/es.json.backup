@@ -1,0 +1,430 @@
+{
+  "common": {
+    "appName": "intuitscape",
+    "loading": "Loading...",
+    "error": "Error",
+    "success": "Success",
+    "warning": "Warning",
+    "info": "Information",
+    "close": "Close",
+    "cancel": "Cancel",
+    "confirm": "Confirm",
+    "save": "Save",
+    "delete": "Delete",
+    "edit": "Edit",
+    "yes": "Yes",
+    "no": "No",
+    "ok": "OK",
+    "back": "Back",
+    "next": "Next",
+    "continue": "Continue",
+    "skip": "Skip",
+    "retry": "Retry",
+    "or": "OR"
+  },
+  "navigation": {
+    "skipToMain": "Skip to main content",
+    "home": "Home",
+    "metrics": "Metrics",
+    "privacy": "Privacy",
+    "settings": "Settings",
+    "login": "Login / Register",
+    "logout": "Logout",
+    "profile": "Profile",
+    "dashboard": "Dashboard"
+  },
+  "homepage": {
+    "welcome": "Welcome to",
+    "tagline": "Your intuitive landscape for learning.",
+    "question": "What do you want to learn about today?",
+    "tooltipsOn": "💡 Tooltips On",
+    "showHints": "💡 Show Hints",
+    "tooltipsEnabled": "Tooltips enabled - hover over elements for help!",
+    "tooltipsHidden": "Tooltips hidden",
+    "toggleTooltips": "Toggle helpful hints for first-time users",
+    "showTooltips": "Show helpful tooltips",
+    "hideTooltips": "Hide helpful tooltips",
+    "recentTopics": {
+      "title": "📚 Select from Recent Topics",
+      "placeholder": "-- Select a Recent Topic --",
+      "description": "{{count}} recent topic",
+      "description_plural": "{{count}} recent topics",
+      "saved": "saved",
+      "loaded": "Loaded topic: {{topic}}"
+    },
+    "topicInput": {
+      "label": "✏️ Enter Your Topic",
+      "placeholder": "Enter a topic (e.g., Machine Learning, Quantum Physics)",
+      "ariaLabel": "Enter a topic to learn about",
+      "helpText": "Type a topic you want to learn about",
+      "charCount": "{{current}}/{{max}} characters",
+      "required": "Topic is required",
+      "tooShort": "Topic must be at least 3 characters",
+      "tooLong": "Topic cannot exceed 200 characters"
+    },
+    "imageUpload": {
+      "title": "Select an image",
+      "label": "Upload an image to extract topic",
+      "description": "Supported formats: PNG, JPG, GIF, WebP (max 10MB)",
+      "processing": "Processing image...",
+      "progress": "{{percent}}% • Processing image...",
+      "remove": "Remove uploaded image",
+      "error": {
+        "invalidType": "Please upload a valid image file (PNG, JPG, GIF, or WebP)",
+        "tooLarge": "Image file is too large. Maximum size is {{max}}MB",
+        "uploadFailed": "Failed to upload image. Please try again."
+      }
+    },
+    "preferences": {
+      "remember": "Remember my recent topics",
+      "ariaLabel": "Remember my preferences for future sessions"
+    },
+    "generate": {
+      "button": "Generate subtopics",
+      "generating": "Generating...",
+      "ariaLabel": "Generate subtopics from your input",
+      "ariaBusy": "Generating subtopics, please wait",
+      "success": "Generating subtopics...",
+      "error": "Failed to generate subtopics. Please try again."
+    },
+    "about": {
+      "whatIs": "What is intuitscape?",
+      "description": "We are an interactive platform designed to personalize learning content catered to your needs. Using intuitscape, you can explore learning in a conceptually linked landscape. By providing a topic and checking a few boxes, we'll be able to generate a personalized mindmap just for you.",
+      "cta": "So, what are you waiting for?",
+      "why": "Why we created intuitscape",
+      "reason": "As students, we constantly found ourselves scouring the internet for the right resources to sort out our confusion and stress. Each time, we would come to explanations that only made us hunt for more answers. It became clear the value of having an intuitive, reliable process to finding fruitful answers for our personal needs. That is where intuitscape comes in, providing the perfect closure to our knowledge quest."
+    },
+    "metricsLink": "📊 Metrics Dashboard",
+    "validationErrors": {
+      "error": "⚠️ {{message}}",
+      "required": "Please enter a topic or upload an image",
+      "processing": "Please wait for the current operation to complete"
+    },
+    "welcomeMessages": {
+      "firstTime": "👋 Welcome! Hover over elements for helpful tips.",
+      "returnVisitor": "Welcome back!"
+    }
+  },
+  "graphPage": {
+    "title": "Concept Map: {{topic}}",
+    "loading": "Generating your concept map...",
+    "error": "Failed to load concept map",
+    "filters": {
+      "title": "🎯 Filter Nodes",
+      "showConcepts": "Show Concepts",
+      "showExamples": "Show Examples",
+      "showQuestions": "Show Questions",
+      "concept": "Concept",
+      "example": "Example",
+      "question": "Question"
+    },
+    "difficulty": {
+      "easy": "Easy",
+      "medium": "Medium",
+      "hard": "Hard"
+    },
+    "search": {
+      "placeholder": "Search nodes...",
+      "ariaLabel": "Search for specific nodes in the graph",
+      "results": "{{count}} result found",
+      "results_plural": "{{count}} results found",
+      "noResults": "No nodes found matching '{{query}}'"
+    },
+    "keyboard": {
+      "navigation": "Keyboard Navigation",
+      "shortcuts": "Keyboard Shortcuts",
+      "help": "Press H for keyboard shortcuts",
+      "arrowKeys": "↑↓←→ or Tab/Shift+Tab - Navigate through nodes",
+      "enter": "Enter or Space - Open selected node details",
+      "escape": "Escape - Close modal / Clear selection",
+      "search": "Ctrl+F - Focus search",
+      "export": "Ctrl+E - Export graph",
+      "numbers": "1-3 - Toggle node type filters",
+      "helpKey": "H - Show this help",
+      "selectedNode": "Selected: {{node}}, {{type}} node",
+      "focusAnnouncement": "Node focused. Press Enter to view details."
+    },
+    "nodeModal": {
+      "close": "Close node details",
+      "difficulty": "Difficulty: {{level}}",
+      "type": "Type: {{type}}",
+      "relatedNodes": "Related Nodes",
+      "explanation": "Explanation",
+      "examples": "Examples",
+      "resources": "Additional Resources"
+    },
+    "export": {
+      "button": "📥 Export",
+      "ariaLabel": "Export concept map as image or PDF",
+      "formats": {
+        "png": "Export as PNG",
+        "svg": "Export as SVG",
+        "pdf": "Export as PDF",
+        "json": "Export as JSON"
+      },
+      "success": "Graph exported successfully!",
+      "error": "Failed to export graph. Please try again.",
+      "filename": "intuitscape-{{topic}}-{{date}}"
+    },
+    "zoom": {
+      "in": "Zoom in",
+      "out": "Zoom out",
+      "reset": "Reset zoom",
+      "fit": "Fit to screen"
+    },
+    "layout": {
+      "title": "Layout Options",
+      "dagre": "Hierarchical",
+      "force": "Force-directed",
+      "circular": "Circular",
+      "grid": "Grid"
+    },
+    "stats": {
+      "nodes": "{{count}} node",
+      "nodes_plural": "{{count}} nodes",
+      "connections": "{{count}} connection",
+      "connections_plural": "{{count}} connections"
+    }
+  },
+  "subtopicPage": {
+    "title": "Select Subtopics",
+    "description": "Choose the subtopics you want to explore in your concept map",
+    "selectAll": "Select All",
+    "deselectAll": "Deselect All",
+    "selected": "{{count}} selected",
+    "generate": "Generate Concept Map",
+    "generating": "Generating your map...",
+    "minRequired": "Please select at least {{min}} subtopics",
+    "maxAllowed": "You can select up to {{max}} subtopics",
+    "back": "← Back to Topic Selection",
+    "subtopic": "Subtopic"
+  },
+  "auth": {
+    "login": {
+      "title": "Login to Your Account",
+      "email": "Email Address",
+      "password": "Password",
+      "rememberMe": "Remember me",
+      "forgotPassword": "Forgot password?",
+      "submit": "Sign In",
+      "noAccount": "Don't have an account?",
+      "signUp": "Sign up",
+      "success": "Login successful! Welcome back.",
+      "error": "Invalid email or password"
+    },
+    "register": {
+      "title": "Create Your Account",
+      "username": "Username",
+      "email": "Email Address",
+      "password": "Password",
+      "confirmPassword": "Confirm Password",
+      "terms": "I agree to the Terms of Service and Privacy Policy",
+      "submit": "Create Account",
+      "hasAccount": "Already have an account?",
+      "signIn": "Sign in",
+      "success": "Account created successfully! Welcome to intuitscape.",
+      "error": {
+        "passwordMismatch": "Passwords do not match",
+        "weakPassword": "Password must be at least 8 characters",
+        "emailExists": "Email already in use",
+        "usernameExists": "Username already taken",
+        "termsRequired": "You must agree to the terms"
+      }
+    },
+    "profile": {
+      "userMenu": "User menu",
+      "tier": "Tier: {{tier}}",
+      "admin": "🛡️ ADMIN",
+      "quotaLimits": "📊 Your Quota Limits",
+      "requestsPerMinute": "Requests/Min",
+      "requestsPerDay": "Requests/Day",
+      "unlimited": "∞"
+    }
+  },
+  "settings": {
+    "title": "Settings",
+    "language": {
+      "title": "🌐 Language",
+      "current": "Current Language",
+      "select": "Select Language",
+      "changed": "Language changed to {{language}}"
+    },
+    "theme": {
+      "title": "🎨 Theme",
+      "light": "Light",
+      "dark": "Dark",
+      "auto": "Auto (System)"
+    },
+    "accessibility": {
+      "title": "♿ Accessibility",
+      "reducedMotion": "Reduce motion",
+      "highContrast": "High contrast mode",
+      "fontSize": "Font size",
+      "screenReader": "Screen reader optimizations"
+    },
+    "privacy": {
+      "title": "🔒 Privacy",
+      "cookies": "Cookie preferences",
+      "analytics": "Allow analytics",
+      "dataExport": "Export my data",
+      "deleteAccount": "Delete account"
+    },
+    "saved": "Settings saved successfully",
+    "error": "Failed to save settings"
+  },
+  "privacy": {
+    "title": "Privacy Policy",
+    "lastUpdated": "Last updated: {{date}}",
+    "sections": {
+      "dataCollection": "Data Collection",
+      "dataUsage": "How We Use Your Data",
+      "dataSecurity": "Data Security",
+      "yourRights": "Your Rights",
+      "cookies": "Cookie Policy",
+      "contact": "Contact Us"
+    }
+  },
+  "cookies": {
+    "banner": {
+      "title": "🍪 We Value Your Privacy",
+      "description": "We use cookies and similar technologies to enhance your experience, analyze site usage, and personalize content. By clicking 'Accept All', you consent to our use of cookies.",
+      "acceptAll": "Accept All",
+      "rejectAll": "Reject All",
+      "customize": "Customize Preferences",
+      "learnMore": "Learn more"
+    },
+    "categories": {
+      "necessary": {
+        "title": "Necessary",
+        "description": "Essential for the website to function properly. Cannot be disabled."
+      },
+      "functional": {
+        "title": "Functional",
+        "description": "Enable enhanced functionality like remembering your preferences."
+      },
+      "analytics": {
+        "title": "Analytics",
+        "description": "Help us understand how visitors interact with our website."
+      },
+      "performance": {
+        "title": "Performance",
+        "description": "Allow us to optimize performance and user experience."
+      }
+    },
+    "savePreferences": "Save Preferences",
+    "saved": "✅ Privacy consent saved"
+  },
+  "metrics": {
+    "title": "Metrics Dashboard",
+    "overview": "Overview",
+    "requests": {
+      "total": "Total Requests",
+      "today": "Requests Today",
+      "perMinute": "Requests/Minute",
+      "perHour": "Requests/Hour"
+    },
+    "users": {
+      "total": "Total Users",
+      "active": "Active Users",
+      "new": "New Users (24h)"
+    },
+    "performance": {
+      "avgResponseTime": "Avg Response Time",
+      "uptime": "Uptime",
+      "errorRate": "Error Rate"
+    },
+    "refresh": "Refresh Data",
+    "export": "Export Report",
+    "adminOnly": "Admin access required"
+  },
+  "errors": {
+    "boundary": {
+      "title": "Oops! Something went wrong",
+      "description": "We encountered an unexpected error. Don't worry, our team has been notified.",
+      "action": "Return to Homepage",
+      "details": "Error Details",
+      "report": "Report this issue"
+    },
+    "404": {
+      "title": "Page Not Found",
+      "description": "The page you're looking for doesn't exist.",
+      "action": "Go to Homepage"
+    },
+    "500": {
+      "title": "Server Error",
+      "description": "Our servers encountered an error. Please try again later.",
+      "action": "Try Again"
+    },
+    "network": {
+      "title": "Network Error",
+      "description": "Unable to connect to the server. Please check your internet connection.",
+      "action": "Retry Connection"
+    },
+    "timeout": {
+      "title": "Request Timeout",
+      "description": "The request took too long to complete. Please try again.",
+      "action": "Retry"
+    }
+  },
+  "loading": {
+    "default": "Loading...",
+    "graph": "Generating your concept map...",
+    "subtopics": "Finding subtopics...",
+    "authenticating": "Authenticating...",
+    "saving": "Saving...",
+    "exporting": "Exporting...",
+    "processing": "Processing...",
+    "uploading": "Uploading...",
+    "analyzing": "Analyzing...",
+    "please-wait": "Please wait..."
+  },
+  "notifications": {
+    "welcome": "👋 Welcome! Hover over elements for helpful tips.",
+    "saved": "✅ Saved successfully",
+    "deleted": "🗑️ Deleted successfully",
+    "copied": "📋 Copied to clipboard",
+    "error": "❌ {{message}}",
+    "success": "✅ {{message}}",
+    "warning": "⚠️ {{message}}",
+    "info": "ℹ️ {{message}}"
+  },
+  "accessibility": {
+    "screenReaderOnly": "Screen reader only content",
+    "skipLink": "Skip to main content",
+    "openMenu": "Open menu",
+    "closeMenu": "Close menu",
+    "toggleNavigation": "Toggle navigation",
+    "currentPage": "Current page",
+    "loading": "Loading content",
+    "closeDialog": "Close dialog",
+    "closeNotification": "Close notification",
+    "previousPage": "Previous page",
+    "nextPage": "Next page",
+    "pageOf": "Page {{current}} of {{total}}",
+    "sortBy": "Sort by {{field}}",
+    "filterBy": "Filter by {{field}}",
+    "searchResults": "Search results for {{query}}"
+  },
+  "dates": {
+    "today": "Today",
+    "yesterday": "Yesterday",
+    "tomorrow": "Tomorrow",
+    "daysAgo": "{{count}} day ago",
+    "daysAgo_plural": "{{count}} days ago",
+    "hoursAgo": "{{count}} hour ago",
+    "hoursAgo_plural": "{{count}} hours ago",
+    "minutesAgo": "{{count}} minute ago",
+    "minutesAgo_plural": "{{count}} minutes ago",
+    "justNow": "Just now"
+  },
+  "validation": {
+    "required": "This field is required",
+    "email": "Please enter a valid email address",
+    "minLength": "Must be at least {{min}} characters",
+    "maxLength": "Cannot exceed {{max}} characters",
+    "number": "Must be a valid number",
+    "url": "Please enter a valid URL",
+    "phone": "Please enter a valid phone number",
+    "pattern": "Format is invalid"
+  }
+}

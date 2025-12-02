@@ -1,0 +1,143 @@
+﻿# =============================================================================
+# Kubernetes Ingress Manifest
+# Exposes services externally with SSL/TLS termination
+# =============================================================================
+
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: KNOWALLEDGE-ingress
+  namespace: default
+  labels:
+    app: KNOWALLEDGE
+  annotations:
+    # Ingress class (nginx, traefik, etc.)
+    kubernetes.io/ingress.class: "nginx"
+    
+    # SSL/TLS configuration
+    cert-manager.io/cluster-issuer: "letsencrypt-prod"
+    cert-manager.io/acme-challenge-type: "http01"
+    
+    # Rate limiting
+    nginx.ingress.kubernetes.io/limit-rps: "100"
+    nginx.ingress.kubernetes.io/limit-connections: "50"
+    
+    # CORS configuration
+    nginx.ingress.kubernetes.io/enable-cors: "true"
+    nginx.ingress.kubernetes.io/cors-allow-origin: "*"
+    nginx.ingress.kubernetes.io/cors-allow-methods: "GET, POST, PUT, DELETE, OPTIONS"
+    nginx.ingress.kubernetes.io/cors-allow-headers: "DNT,X-CustomHeader,Keep-Alive,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Authorization"
+    
+    # Connection settings
+    nginx.ingress.kubernetes.io/proxy-connect-timeout: "60"
+    nginx.ingress.kubernetes.io/proxy-send-timeout: "120"
+    nginx.ingress.kubernetes.io/proxy-read-timeout: "120"
+    nginx.ingress.kubernetes.io/proxy-body-size: "10m"
+    
+    # WebSocket support (if needed)
+    nginx.ingress.kubernetes.io/websocket-services: "KNOWALLEDGE-backend"
+    
+    # Request buffering
+    nginx.ingress.kubernetes.io/proxy-buffering: "on"
+    nginx.ingress.kubernetes.io/proxy-buffer-size: "8k"
+    
+    # Monitoring
+    nginx.ingress.kubernetes.io/enable-access-log: "true"
+spec:
+  tls:
+  - hosts:
+    - api.KNOWALLEDGE.com
+    - www.KNOWALLEDGE.com
+    secretName: KNOWALLEDGE-tls-cert
+  
+  rules:
+  # API routes
+  - host: api.KNOWALLEDGE.com
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: KNOWALLEDGE-backend
+            port:
+              number: 80
+  
+  # Main application routes
+  - host: www.KNOWALLEDGE.com
+    http:
+      paths:
+      - path: /api/
+        pathType: Prefix
+        backend:
+          service:
+            name: KNOWALLEDGE-backend
+            port:
+              number: 80
+
+---
+# =============================================================================
+# Network Policy
+# Controls pod-to-pod communication for security
+# =============================================================================
+
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: KNOWALLEDGE-backend-netpol
+  namespace: default
+spec:
+  podSelector:
+    matchLabels:
+      app: KNOWALLEDGE
+      component: backend
+  policyTypes:
+  - Ingress
+  - Egress
+  
+  ingress:
+  # Allow from ingress controller
+  - from:
+    - namespaceSelector:
+        matchLabels:
+          name: ingress-nginx
+    ports:
+    - protocol: TCP
+      port: 5000
+  
+  # Allow from same namespace
+  - from:
+    - podSelector:
+        matchLabels:
+          app: KNOWALLEDGE
+    ports:
+    - protocol: TCP
+      port: 5000
+  
+  egress:
+  # Allow to Redis
+  - to:
+    - podSelector:
+        matchLabels:
+          app: KNOWALLEDGE
+          component: redis
+    ports:
+    - protocol: TCP
+      port: 6379
+  
+  # Allow to DNS
+  - to:
+    - namespaceSelector: {}
+      podSelector:
+        matchLabels:
+          k8s-app: kube-dns
+    ports:
+    - protocol: UDP
+      port: 53
+  
+  # Allow to external APIs (Google Gemini)
+  - to:
+    - namespaceSelector: {}
+    ports:
+    - protocol: TCP
+      port: 443

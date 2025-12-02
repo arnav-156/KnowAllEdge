@@ -1,0 +1,60 @@
+﻿<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/logo.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+    <!-- ✅ Google Analytics 4 (replace G-XXXXXXXXXX with your Measurement ID) -->
+    <!-- Get your Measurement ID from https://analytics.google.com -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-BTPWE572RT"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-BTPWE572RT', {
+        'send_page_view': false,  // We'll send manually with React Router
+        'anonymize_ip': true,      // GDPR compliance
+        'cookie_flags': 'SameSite=None;Secure'
+      });
+      window.gtag = gtag;  // Make available globally
+    </script>
+    
+    <!-- Primary Meta Tags -->
+    <title>KNOWALLEDGE - AI-Powered Concept Map Generator</title>
+    <meta name="title" content="KNOWALLEDGE - AI-Powered Concept Map Generator" />
+    <meta name="description" content="Transform any topic into an interactive, visual concept map. Powered by AI to help you learn, teach, and understand complex subjects better." />
+    <meta name="keywords" content="concept map, mind map, education, learning, AI, visualization, teaching tools" />
+    <meta name="author" content="KNOWALLEDGE" />
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://KNOWALLEDGE.com/" />
+    <meta property="og:title" content="KNOWALLEDGE - AI-Powered Concept Map Generator" />
+    <meta property="og:description" content="Transform any topic into an interactive, visual concept map. Powered by AI to help you learn, teach, and understand complex subjects better." />
+    <meta property="og:image" content="https://KNOWALLEDGE.com/logo.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:site_name" content="KNOWALLEDGE" />
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content="https://KNOWALLEDGE.com/" />
+    <meta property="twitter:title" content="KNOWALLEDGE - AI-Powered Concept Map Generator" />
+    <meta property="twitter:description" content="Transform any topic into an interactive, visual concept map. Powered by AI to help you learn, teach, and understand complex subjects better." />
+    <meta property="twitter:image" content="https://KNOWALLEDGE.com/logo.png" />
+    
+    <!-- Additional SEO Tags -->
+    <meta name="robots" content="index, follow" />
+    <meta name="language" content="English" />
+    <meta name="revisit-after" content="7 days" />
+    <link rel="canonical" href="https://KNOWALLEDGE.com/" />
+  </head>
+  <body>
+    <!-- ✅ ACCESSIBILITY: Skip to main content link (WCAG 2.4.1 Level A) -->
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+    
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>

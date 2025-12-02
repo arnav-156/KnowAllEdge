@@ -1,0 +1,493 @@
+
+/* ========================================
+   ACCESSIBILITY: SKIP LINK
+   WCAG 2.4.1 Bypass Blocks (Level A)
+   ======================================== */
+
+.skip-link {
+  position: absolute;
+  top: -100px;
+  left: 0;
+  background: #667eea;
+  color: white;
+  padding: 12px 24px;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 16px;
+  border-radius: 0 0 8px 0;
+  z-index: 10001;
+  transition: top 0.3s ease;
+}
+
+.skip-link:focus {
+  top: 0;
+  outline: 3px solid #fff;
+  outline-offset: 2px;
+}
+
+/* ========================================
+   ACCESSIBILITY: ENHANCED FOCUS INDICATORS
+   WCAG 2.4.7 Focus Visible (Level AA)
+   ======================================== */
+
+/* Global focus styles for all interactive elements */
+button,
+a,
+input,
+select,
+textarea,
+[role="button"],
+[tabindex]:not([tabindex="-1"]) {
+  position: relative;
+}
+
+/* Custom buttons and links */
+button:focus-visible,
+a:focus-visible {
+  outline: 3px solid rgba(102, 126, 234, 0.8);
+  outline-offset: 2px;
+  box-shadow: 0 0 0 6px rgba(102, 126, 234, 0.15);
+}
+
+/* Navbar links specific focus */
+.navbar-link:focus-visible,
+.navbar-login-btn:focus-visible {
+  outline: 3px solid rgba(102, 126, 234, 0.8);
+  outline-offset: 3px;
+}
+
+/* Profile button focus */
+.profile-button:focus-visible {
+  outline: 3px solid rgba(102, 126, 234, 0.8);
+  outline-offset: 2px;
+  border-color: #667eea;
+}
+
+/* Dropdown menu items focus */
+.dropdown-action-btn:focus-visible {
+  outline: 3px solid rgba(102, 126, 234, 0.8);
+  outline-offset: -2px;
+  background: #f7fafc;
+}
+
+/* ========================================
+   BODY STYLES
+   ======================================== */
+
+body {
+  font-size: 12pt;
+  color: darkslategrey;
+  font-family:Verdana, Geneva, Tahoma, sans-serif;
+  margin: 20px 10px;
+  /*background: radial-gradient(at top left,lightgrey,lightgreen);*/
+  background-image: url("bg.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center center;
+  padding: 70px 20px 20px 20px; /* Added top padding for navbar */
+  border: 4px solid grey; 
+  border-radius: 15px;
+  border-style: double;
+  border-top: 8px solid;
+  border-bottom: 0px;
+  border-left: 0px;
+  border-right: 0px;
+  align-items: center;
+}
+
+h1 {
+  width: fit-content;
+}
+
+.cap-width {
+  max-width: 70%;
+}
+
+.big-heading {
+  font-size: 84px;
+  padding-bottom: 0;
+  margin-bottom: 0;
+}
+
+.logo {
+  display: block;
+  margin: 0 auto;
+  /* margin-left: 75%;*/
+  transform: translate(-50%, 0);
+  clip-path: circle(50%);
+  width: 250px;
+  height: 250px;
+  opacity: 75%;
+}
+
+input[type=text] {
+  height: 12px;
+  padding: 12px 20px;
+  width: 70%;
+  border: 2px solid #ccc;
+  border-radius: 4px;
+  background-color: #f8f8f8;
+  transition: all 0.2s ease-in-out;
+  margin-bottom: 20px;
+}
+
+input[type=text]:hover {
+  box-shadow: 0 5px 15px rgba(143, 182, 92, 0.4);
+  cursor: pointer;
+}
+
+/* Enhanced focus indicators for accessibility */
+input[type=text]:focus,
+input[type=file]:focus,
+input[type=checkbox]:focus,
+select:focus {
+  outline: 3px solid rgba(64, 197, 64, 0.6);
+  outline-offset: 2px;
+  box-shadow: 0 0 0 4px rgba(64, 197, 64, 0.1);
+}
+
+button:focus {
+  outline: 3px solid rgba(64, 197, 64, 0.8);
+  outline-offset: 2px;
+}
+
+/* Keyboard navigation hint */
+kbd {
+  display: inline-block;
+  padding: 2px 6px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  background: #f5f5f5;
+  font-size: 11px;
+  font-family: monospace;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.1);
+}
+
+a {
+  text-decoration: none;
+}
+
+button {
+  color: white;
+  background-color: rgb(64, 197, 64);
+  width: 200px;
+  height: 3em;
+  border-radius: 10px;
+  border: 0px;
+  transition: all 0.2s ease-in-out;
+}
+
+button:hover {
+  color: rgba(255, 255, 255, 1);
+  box-shadow: 0 5px 15px rgba(143, 182, 92, 0.4);
+  cursor: pointer;
+}
+
+.input-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  flex-direction: column;
+  width: 600px;
+}
+
+.input-area {
+  width: fit-content;
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+}
+
+/* CSS */
+/* .button-4 {
+  appearance: none;
+  background-color: #FAFBFC;
+  border: 1px solid rgba(27, 31, 35, 0.15);
+  border-radius: 6px;
+  box-shadow: rgba(27, 31, 35, 0.04) 0 1px 0, rgba(255, 255, 255, 0.25) 0 1px 0 inset;
+  box-sizing: border-box;
+  color: #24292E;
+  cursor: pointer;
+  display: inline-block;
+  font-family: -apple-system, system-ui, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 20px;
+  list-style: none;
+  padding: 6px 16px;
+  position: relative;
+  transition: background-color 0.2s cubic-bezier(0.3, 0, 0.5, 1);
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  vertical-align: middle;
+  white-space: nowrap;
+  word-wrap: break-word;
+}
+
+.button-4:hover {
+  background-color: #F3F4F6;
+  text-decoration: none;
+  transition-duration: 0.1s;
+}
+
+.button-4:disabled {
+  background-color: #FAFBFC;
+  border-color: rgba(27, 31, 35, 0.15);
+  color: #959DA5;
+  cursor: default;
+}
+
+.button-4:active {
+  background-color: #EDEFF2;
+  box-shadow: rgba(225, 228, 232, 0.2) 0 1px 0 inset;
+  transition: none 0s;
+}
+
+.button-4:focus {
+  outline: 1px transparent;
+}
+
+.button-4:before {
+  display: none;
+}
+
+.button-4:-webkit-details-marker {
+  display: none;
+} */
+
+.top-section {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  justify-items: center;
+  align-items: center;
+  align-content: center;
+  text-align: center;
+}
+
+.shadow-effect {
+  padding-top: 50vh;
+  filter: drop-shadow(10px 20px 100px lightslategrey);
+}
+
+.gradient-text {
+  background-image: linear-gradient(45deg, #09203F , #537895);
+  background-clip: text;
+  color: transparent;
+}
+
+.gradient-text2 {
+  background-image: linear-gradient(to right, rgb(83, 201, 15), rgb(51, 139, 147));
+  background-clip: text;
+  color: transparent;
+}
+
+.typewriter {
+  color: lightslategray;
+  display: inline-block;
+  font-family: "Arial", sans-serif;
+  padding: 0;
+  margin: 0;
+}
+
+.typed {
+  overflow: hidden;
+  white-space: nowrap;
+  border-right: 2px solid;
+  padding: 0;
+  margin: 0;
+  width: 0;
+  animation: typing 4s steps(90,end) forwards, blinking 1s infinite;
+}
+
+@keyframes typing {
+  from { width: 0 }
+  to { width: 100% }
+}
+
+@keyframes blinking {
+  0% { border-right-color: transparent }
+  50% { border-right-color: lightslategrey }
+  100% { border-right-color: transparent }
+}
+
+.inputImage {
+  width: 250px;
+  height: 250px;
+}
+
+/* ========================================
+   MOBILE RESPONSIVENESS
+   ======================================== */
+
+/* Tablets and smaller laptops */
+@media (max-width: 1024px) {
+  .big-heading {
+    font-size: 64px;
+  }
+  
+  .input-container {
+    width: 500px;
+  }
+  
+  .cap-width {
+    max-width: 85%;
+  }
+}
+
+/* Tablets in portrait mode */
+@media (max-width: 768px) {
+  body {
+    margin: 10px 5px;
+    padding: 0 10px 10px 10px;
+    font-size: 11pt;
+  }
+  
+  .big-heading {
+    font-size: 48px;
+  }
+  
+  .input-container {
+    width: 90%;
+    max-width: 400px;
+  }
+  
+  .input-area {
+    flex-direction: column;
+    gap: 15px;
+    width: 100%;
+  }
+  
+  input[type=text] {
+    width: 90%;
+  }
+  
+  button {
+    width: 180px;
+  }
+  
+  .logo {
+    width: 200px;
+    height: 200px;
+  }
+  
+  .inputImage {
+    width: 200px;
+    height: 200px;
+  }
+  
+  .cap-width {
+    max-width: 95%;
+  }
+  
+  .shadow-effect {
+    padding-top: 30vh;
+  }
+}
+
+/* Mobile devices */
+@media (max-width: 480px) {
+  body {
+    margin: 5px;
+    padding: 0 5px 10px 5px;
+    font-size: 10pt;
+  }
+  
+  .big-heading {
+    font-size: 32px;
+  }
+  
+  h2 {
+    font-size: 18px;
+  }
+  
+  .input-container {
+    width: 95%;
+  }
+  
+  input[type=text] {
+    width: 100%;
+    font-size: 14px;
+    padding: 10px 15px;
+  }
+  
+  button {
+    width: 100%;
+    max-width: 200px;
+    height: 2.5em;
+    font-size: 14px;
+  }
+  
+  .logo {
+    width: 150px;
+    height: 150px;
+  }
+  
+  .inputImage {
+    width: 150px;
+    height: 150px;
+  }
+  
+  .typed {
+    font-size: 14px;
+  }
+  
+  .shadow-effect {
+    padding-top: 20vh;
+  }
+  
+  /* Make text more readable on small screens */
+  .gradient-text,
+  .gradient-text2 {
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+}
+
+/* Extra small devices */
+@media (max-width: 320px) {
+  .big-heading {
+    font-size: 28px;
+  }
+  
+  h2 {
+    font-size: 16px;
+  }
+  
+  button {
+    font-size: 12px;
+  }
+}
+
+/* Landscape orientation on mobile */
+@media (max-height: 600px) and (orientation: landscape) {
+  .shadow-effect {
+    padding-top: 10vh;
+  }
+  
+  .logo {
+    width: 120px;
+    height: 120px;
+  }
+}
+
+/* Touch device optimizations */
+@media (hover: none) and (pointer: coarse) {
+  button {
+    min-height: 44px; /* iOS touch target size */
+    padding: 12px 20px;
+  }
+  
+  input[type=text] {
+    min-height: 44px;
+  }
+  
+  /* Larger tap targets for mobile */
+  a, button, input {
+    touch-action: manipulation;
+  }
+}

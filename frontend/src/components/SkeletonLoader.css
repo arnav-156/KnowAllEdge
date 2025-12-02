@@ -1,0 +1,123 @@
+/* Skeleton Loader Styles */
+
+@keyframes shimmer {
+  0% {
+    background-position: -1000px 0;
+  }
+  100% {
+    background-position: 1000px 0;
+  }
+}
+
+.skeleton-line,
+.skeleton-card,
+.skeleton-subtopic,
+.skeleton-checkbox,
+.skeleton-node {
+  background: linear-gradient(
+    90deg,
+    #f0f0f0 25%,
+    #e0e0e0 50%,
+    #f0f0f0 75%
+  );
+  background-size: 1000px 100%;
+  animation: shimmer 2s infinite;
+  border-radius: 4px;
+}
+
+.skeleton-line {
+  display: block;
+}
+
+.skeleton-card {
+  padding: 20px;
+  background: white;
+  border-radius: 8px;
+  margin-bottom: 15px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.skeleton-subtopic {
+  display: flex;
+  align-items: center;
+  padding: 12px;
+  margin-bottom: 10px;
+  background: #f9f9f9;
+  border-radius: 5px;
+}
+
+.skeleton-checkbox {
+  width: 20px;
+  height: 20px;
+  margin-right: 12px;
+  flex-shrink: 0;
+}
+
+.skeleton-subtopic-text {
+  flex: 1;
+}
+
+.skeleton-graph {
+  width: 100%;
+  height: 600px;
+  background: white;
+  border-radius: 10px;
+  padding: 20px;
+  position: relative;
+}
+
+.skeleton-graph-header {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.skeleton-graph-body {
+  position: relative;
+  height: 100%;
+}
+
+.skeleton-node {
+  position: absolute;
+  width: 120px;
+  height: 80px;
+  background: linear-gradient(
+    90deg,
+    #e0e0e0 25%,
+    #d0d0d0 50%,
+    #e0e0e0 75%
+  );
+  background-size: 1000px 100%;
+  animation: shimmer 2s infinite;
+  border-radius: 8px;
+  transform: translate(-50%, -50%);
+}
+
+.skeleton-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+  .skeleton-line,
+  .skeleton-card,
+  .skeleton-subtopic,
+  .skeleton-checkbox,
+  .skeleton-node {
+    background: linear-gradient(
+      90deg,
+      #2a2a2a 25%,
+      #3a3a3a 50%,
+      #2a2a2a 75%
+    );
+  }
+  
+  .skeleton-card {
+    background: #1a1a1a;
+  }
+  
+  .skeleton-subtopic {
+    background: #252525;
+  }
+}

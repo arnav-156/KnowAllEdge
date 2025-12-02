@@ -1,0 +1,181 @@
+﻿# =============================================================================
+# Docker Compose for Local Development
+# Simplified setup for development with hot-reload support
+# =============================================================================
+
+version: '3.8'
+
+services:
+  # PostgreSQL Database
+  postgres:
+    image: postgres:15-alpine
+    container_name: KNOWALLEDGE-db
+    environment:
+      POSTGRES_DB: KNOWALLEDGE
+      POSTGRES_USER: KNOWALLEDGE_user
+      POSTGRES_PASSWORD: dev_password_change_in_production
+      POSTGRES_INITDB_ARGS: "--encoding=UTF8 --locale=en_US.UTF-8"
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./backend/migrations:/docker-entrypoint-initdb.d:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U KNOWALLEDGE_user -d KNOWALLEDGE"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - KNOWALLEDGE_network
+    restart: unless-stopped
+
+  # Redis Cache
+  redis:
+    image: redis:7-alpine
+    container_name: KNOWALLEDGE-redis
+    command: redis-server --appendonly yes --maxmemory 256mb --maxmemory-policy allkeys-lru
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 3s
+      retries: 3
+    networks:
+      - KNOWALLEDGE_network
+    restart: unless-stopped
+
+  # Backend API
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: KNOWALLEDGE-backend
+    ports:
+      - "5000:5000"
+    environment:
+      # Flask Configuration
+      - FLASK_ENV=development
+      - FLASK_DEBUG=1
+      - FLASK_APP=main.py
+      
+      # Database Configuration
+      - DATABASE_URL=postgresql://KNOWALLEDGE_user:dev_password_change_in_production@postgres:5432/KNOWALLEDGE
+      - DB_HOST=postgres
+      - DB_PORT=5432
+      - DB_NAME=KNOWALLEDGE
+      - DB_USER=KNOWALLEDGE_user
+      - DB_PASSWORD=dev_password_change_in_production
+      
+      # Redis Configuration
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
+      - REDIS_ENABLED=true
+      
+      # API Keys (use .env file in production)
+      - GOOGLE_API_KEY=${GOOGLE_API_KEY:-your_api_key_here}
+      
+      # Security (development only - change in production)
+      - JWT_SECRET_KEY=dev_jwt_secret_change_in_production
+      - SECRET_KEY=dev_secret_key_change_in_production
+      
+      # Rate Limiting
+      - RATE_LIMIT_ENABLED=false
+      - QUOTA_RPM=100
+      - QUOTA_RPD=10000
+      
+      # Caching
+      - CACHE_ENABLED=true
+      - CACHE_REDIS_TTL=3600
+    volumes:
+      - ./backend:/app
+      - backend_uploads:/app/uploads
+      - backend_logs:/app/logs
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:5000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+    networks:
+      - KNOWALLEDGE_network
+    restart: unless-stopped
+
+  # Frontend
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: KNOWALLEDGE-frontend
+    ports:
+      - "8080:8080"
+    environment:
+      - VITE_API_URL=http://localhost:5000
+      - VITE_ENV=development
+    depends_on:
+      - backend
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8080/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 10s
+    networks:
+      - KNOWALLEDGE_network
+    restart: unless-stopped
+
+volumes:
+  postgres_data:
+    driver: local
+  redis_data:
+    driver: local
+  backend_uploads:
+    driver: local
+  backend_logs:
+    driver: local
+
+networks:
+  KNOWALLEDGE_network:
+    driver: bridge
+
+# =============================================================================
+# Development Setup Instructions:
+# =============================================================================
+# 
+# 1. Create .env file in backend directory with your API keys:
+#    GOOGLE_API_KEY=your_actual_api_key
+#    JWT_SECRET_KEY=your_jwt_secret
+#    SECRET_KEY=your_flask_secret
+# 
+# 2. Start all services:
+#    docker-compose up -d
+# 
+# 3. View logs:
+#    docker-compose logs -f
+# 
+# 4. Access services:
+#    - Frontend: http://localhost:8080
+#    - Backend API: http://localhost:5000
+#    - PostgreSQL: localhost:5432
+#    - Redis: localhost:6379
+# 
+# 5. Run database migrations:
+#    docker-compose exec backend python -m alembic upgrade head
+# 
+# 6. Stop services:
+#    docker-compose down
+# 
+# 7. Stop and remove volumes (clean slate):
+#    docker-compose down -v
+# 
+# 8. Rebuild containers after code changes:
+#    docker-compose up -d --build
+# 
+# =============================================================================

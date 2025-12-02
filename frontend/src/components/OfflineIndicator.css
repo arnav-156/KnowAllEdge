@@ -1,0 +1,86 @@
+.offline-indicator {
+  position: fixed;
+  top: 1rem;
+  right: 1rem;
+  z-index: 9999;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+  padding: 1rem 1.5rem;
+  animation: slideIn 0.3s ease;
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+.offline-indicator.offline {
+  background: linear-gradient(135deg, #f44336 0%, #e53935 100%);
+  color: white;
+}
+
+.offline-indicator.online {
+  background: linear-gradient(135deg, #ff9800 0%, #fb8c00 100%);
+  color: white;
+}
+
+.indicator-content {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.indicator-icon {
+  font-size: 1.5rem;
+}
+
+.indicator-text {
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+.sync-btn {
+  padding: 0.5rem 1rem;
+  background: white;
+  color: #ff9800;
+  border: none;
+  border-radius: 6px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.sync-btn:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.sync-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+@media (max-width: 768px) {
+  .offline-indicator {
+    top: auto;
+    bottom: 1rem;
+    right: 1rem;
+    left: 1rem;
+  }
+
+  .indicator-content {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .sync-btn {
+    width: 100%;
+  }
+}
